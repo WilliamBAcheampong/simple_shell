@@ -51,14 +51,14 @@ char *estwill_strdup(const char *str)
 }
 
 /**
- * _estwillputs - Prints an input string.
+ * _willputs - Prints an input string.
  *
  * @str: The string printed.
  *
  * Return: Nothing.
  *
  */
-void _estwillputs(char *str)
+void _willputs(char *str)
 {
 	int u = 0;
 

@@ -17,7 +17,7 @@ int hshell(info_t *info, char **arguvec)
 	{
 		estwill_remove_info(info);
 		if (estwill_interactive(info))
-		_estwillputs("$ ");
+		_willputs("$ ");
 		_estwillputchar(ESTWILL_BUFFER_FLUSH);
 		f = estwill_get_input(info);
 		if (f != -1)

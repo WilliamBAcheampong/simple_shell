@@ -179,9 +179,9 @@ static size_t d, length;
  */
 void estwill_handle_sigint(__attribute__((unused))int sig_numb)
 {
-	_estwillputs("\n");
+	_willputs("\n");
 
-	_estwillputs("$ ");
+	_willputs("$ ");
 
 	estwill_putchar(ESTWILL_BUFFER_FLUSH);
 }

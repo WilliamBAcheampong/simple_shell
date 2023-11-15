@@ -91,8 +91,8 @@ size_t estwill_string_list_print(const list_t *n)
 
 	while (n)
 	{
-		_estwillputs(n->str ? n->str : "(nill)");
-		_estwillputs("\n");
+		_willputs(n->str ? n->str : "(nill)");
+		_willputs("\n");
 		n = n->nextn;
 		v++;
 	}

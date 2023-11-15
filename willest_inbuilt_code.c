@@ -47,7 +47,7 @@ int estwill_mcd(info_t *info)
 y = getcwd(buffer, 1024);
 
 	if (!y)
-	_estwillputs("TODO: >>getcwd emsg of the failure<<\n");
+	_willputs("TODO: >>getcwd emsg of the failure<<\n");
 	if (!info->argv[1])
 	{
 		dir = _getenv(info, "HOME=");
@@ -61,11 +61,11 @@ y = getcwd(buffer, 1024);
 	{
 		if (!_getenv(info, "OLDPWD="))
 		{
-			_estwillputs(y);
+			_willputs(y);
 			estwill_putchar('\n');
 			return (1);
 		}
-		_estwillputs(_getenv(info, "OLDPWD=")), estwill_putchar('\n');
+		_willputs(_getenv(info, "OLDPWD=")), estwill_putchar('\n');
 		ret_chdir = /* TODO: an idea of of what this would be?? */
 			chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
 	}
@@ -98,8 +98,8 @@ int estwill_help(info_t *info)
 	char **my_arg_array;
 
 	my_arg_array = info->argv;
-	_estwillputs("Help call. The function can’t be used for now\n");
+	_willputs("Help call. The function can’t be used for now\n");
 	if (0)
-	_estwillputs(*my_arg_array); /* temp att_unused try and error */
+	_willputs(*my_arg_array); /* temp att_unused try and error */
 	return (0);
 }

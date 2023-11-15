@@ -84,8 +84,8 @@ int _aliasPrint(list_t *node)
 		for (k = node->str; k <= f; k++)
 		estwill_putchar(*k);
 		estwill_putchar('\'');
-		_estwillputs(f + 1);
-		_estwillputs("'\n");
+		_willputs(f + 1);
+		_willputs("'\n");
 		return (0);
 	}
 	return (1);

@@ -71,11 +71,11 @@ size_t list_print(const list_t *n)
 
 	while (n)
 	{
-		_estwillputs(estwill_change_num(n->numb, 10, 0));
+		_willputs(estwill_change_num(n->numb, 10, 0));
 		estwill_putchar(':');
 		estwill_putchar(' ');
-		_estwillputs(n->str ? n->str : "(nil)");
-		_estwillputs("\n");
+		_willputs(n->str ? n->str : "(nil)");
+		_willputs("\n");
 		n = n->nextn;
 		e++;
 	}

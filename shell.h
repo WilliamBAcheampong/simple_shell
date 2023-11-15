@@ -135,7 +135,7 @@ int _estwillputsfd(char *str, int fd);
 char *estwill_strdup(const char *);
 char *estwill_strcpy(char *, char *);
 int estwill_putchar(char);
-void _estwillputs(char *);
+void _willputs(char *);
 
 
 
