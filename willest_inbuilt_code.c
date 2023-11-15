@@ -46,7 +46,7 @@ int estwill_mcd(info_t *info)
 	int ret_chdir;
 y = getcwd(buffer, 1024);
 
-if (!y)
+	if (!y)
 	_estwillputs("TODO: >>getcwd emsg of the failure<<\n");
 	if (!info->argv[1])
 	{

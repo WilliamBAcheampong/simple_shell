@@ -35,7 +35,7 @@ int hshell(info_t *info, char **arguvec)
 	estwill_free_info(info, 1);
 	if (!estwill_interactive(info) && info->status)
 		exit(info->status);
-		if (builtin_ret == -2)
+	if (builtin_ret == -2)
 	{
 		if (info->errcode_numb == -1)
 			exit(info->status);

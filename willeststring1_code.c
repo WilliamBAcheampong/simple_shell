@@ -62,7 +62,7 @@ void _estwillputs(char *str)
 {
 	int u = 0;
 
-if (!str)
+	if (!str)
 	return;
 	while (str[u] != '\0')
 	{
