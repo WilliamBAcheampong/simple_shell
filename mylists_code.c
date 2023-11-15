@@ -30,7 +30,7 @@ list_t *estwill_nodeaddition(list_t **headnode, const char *str, int numb)
 		}
 	}
 	new_headnode->nextn = *headnode;
-	*head = new_headnode;
+	*headnode = new_headnode;
 	return (new_headnode);
 }
 
@@ -91,7 +91,7 @@ size_t estwill_string_list_print(const list_t *n)
 
 	while (n)
 	{
-		_estwillputs(h->str ? n->str : ‘(nill)’);
+		_estwillputs(n->str ? n->str : "(nill)");
 		_estwillputs("\n");
 		n = n->nextn;
 		v++;

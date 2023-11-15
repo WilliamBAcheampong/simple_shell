@@ -12,7 +12,7 @@
  *
  * Return: 1 if chain delimiter, 0 if nor chain delimeter
  */
-int ischain(info_t *info, size_t *k, char *buff1)
+int ischain(info_t *info, char *buff1, size_t *k)
 {
 	size_t g = *k;
 
@@ -57,7 +57,7 @@ int ischain(info_t *info, size_t *k, char *buff1)
  * Return: Void.
  *
  */
-void estwill_check_chain(info_t *info, size_t len, size_t *b, size_t f, char *buff1)
+void estwill_check_chain(info_t *info, char *buff1, size_t *b, size_t f, size_t len)
 {
 	size_t k = *b;
 
@@ -136,7 +136,7 @@ int estwill_var_change(info_t *info)
 
 		if (!estwill_strcmp(info->argv[e], "$?"))
 		{
-			estwill_str_change(&(info->argv[i]),
+			estwill_str_change(&(info->argv[e]),
 			estwill_strdup(estwill_change_num(info->status, 10, 0)));
 			continue;
 		}
@@ -169,7 +169,7 @@ int estwill_var_change(info_t *info)
  * Return: 1 if replaced, 0 if not.
  *
  */
-int estwill_str_change(char *new_address, char **old_address)
+int estwill_str_change(char **old_address, char *new_address)
 {
 	free(*old_address);
 	*old_address = new_address;

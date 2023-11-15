@@ -26,7 +26,7 @@ ssize_t y = 0;
 #if ESTWILL_GET_LINE
 		y = getline(buffer, &len_p, stdin);
 #else
-		y = estwill_get_line(info, bufbuffer, &len_p);
+		y = estwill_get_line(info, buffer, &len_p);
 #endif
 		if (y > 0)
 		{
@@ -146,7 +146,7 @@ static size_t d, length;
 	if (d == length)
 		d = length = 0;
 
-	y = read_buf(info, buf, &length);
+	y = read_buf(info, &length, buf);
 	if (y == -1 || (u == 0 && length == 0))
 		return (-1);
 
@@ -156,7 +156,7 @@ static size_t d, length;
 	if (!new_f) /* MALLOC FAILURE! */
 		return (f ? free(f), -1 : -1);
 
-	if (s)
+	if (u)
 		estwill_strncat(new_f, buf + d, q - d);
 	else
 		estwill_strncpy(new_f, buf + d, q - d + 1);

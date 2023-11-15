@@ -10,7 +10,7 @@
  *Return: Concatenated string.
  *
  */
-char *estwill_strncpy(char *destination, int t, char *src)
+char *estwill_strncpy(char *destination, char *src, int t)
 {
 	int f, g;
 	char *s = destination;
@@ -44,7 +44,7 @@ char *estwill_strncpy(char *destination, int t, char *src)
  *Return: the concatenated string.
  *
  */
-char *estwill_strncat(char *destination, int t, char *src)
+char *estwill_strncat(char *destination, char *src, int t)
 {
 	int f, g;
 	char *s = destination;

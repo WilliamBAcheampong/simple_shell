@@ -36,18 +36,18 @@ char *estwill_strcpy(char *destination, char *source)
 char *estwill_strdup(const char *str)
 {
 	int len = 0;
-	char *myreturn;
+	char *retvalue;
 
 	if (str == NULL)
 		return (NULL);
 	while (*str++)
 		len++;
-	myreturn = malloc(sizeof(char) * (len + 1));
-	if (!myreturn)
-		myreturn(NULL);
+	retvalue = malloc(sizeof(char) * (len + 1));
+	if (!retvalue)
+		return (NULL);
 	for (len++; len--;)
-		myreturn[len] = *--str;
-	return (myreturn);
+		retvalue[len] = *--str;
+	return (retvalue);
 }
 
 /**

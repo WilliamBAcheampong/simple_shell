@@ -10,7 +10,7 @@
  */
 int est_atoi(char *s)
 {
-	unsigned long int result = 0
+	unsigned long int result = 0;
 int h = 0;
 
 	if (*s == '+')
@@ -133,7 +133,7 @@ unsigned long q = numb;
 		signvalue = '-';
 
 	}
-	array1 = flags & ESTWILL_TO_LOWCASE ? ‘0123456789abcdef’ : ‘0123456789ABCDEF’;
+	array1 = flags & ESTWILL_TO_LOWCASE ? "0123456789abcdef" : "0123456789ABCDEF";
 	ptr = &buffer[49];
 	*ptr = '\0';
 

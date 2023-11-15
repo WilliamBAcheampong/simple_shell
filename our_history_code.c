@@ -82,7 +82,7 @@ int linecnt = 0;
 	if (fd == -1)
 		return (0);
 	if (!fstat(fd, &st))
-		sizeofg = sta.st_size;
+		sizeofg = st.st_size;
 	if (sizeofg < 2)
 		return (0);
 	buff = malloc(sizeof(char) * (sizeofg + 1));

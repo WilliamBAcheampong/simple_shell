@@ -32,7 +32,7 @@ int estwill_exit(info_t *info)
 }
 
 /**
- * estwill_mcd - Process current directory or folder changer,
+ * estwill_mcd - Process current directory or folder changer.
  *
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
@@ -42,11 +42,11 @@ int estwill_exit(info_t *info)
  */
 int estwill_mcd(info_t *info)
 {
-buffer[1024] char *y, *dir;
+	char *y, *dir, buffer[1024];
 	int ret_chdir;
-s = getcwd(buffer, 1024);
+y = getcwd(buffer, 1024);
 
-	if (!s)
+if (!y)
 	_estwillputs("TODO: >>getcwd emsg of the failure<<\n");
 	if (!info->argv[1])
 	{
@@ -61,7 +61,7 @@ s = getcwd(buffer, 1024);
 	{
 		if (!_getenv(info, "OLDPWD="))
 		{
-			_estwillputs(s);
+			_estwillputs(y);
 			estwill_putchar('\n');
 			return (1);
 		}
@@ -73,7 +73,7 @@ s = getcwd(buffer, 1024);
 	ret_chdir = chdir(info->argv[1]);
 	if (ret_chdir == -1)
 	{
-		estwill_errorPrint(info, ‘I cannot change directory into ‘);
+		estwill_errorPrint(info, "I cannot change directory into");
 		_estwillputs(info->argv[1]), _estwillputchar('\n');
 	}
 	else

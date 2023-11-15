@@ -9,12 +9,12 @@
  * Return: pointer to the memory area s, (s).
  *
  */
-char *estwill_setmemory(char t, unsigned int f, char *a)
+char *estwill_setmemory(char *a, char t, unsigned int f)
 {
 	unsigned int m;
 
 	for (m = 0; m < f; m++)
-		s[m] = t;
+		a[m] = t;
 	return (a);
 }
 

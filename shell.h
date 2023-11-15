@@ -193,8 +193,8 @@ void estwill_errorPrint(info_t *, char *);
 
 
 /****** willest_fcode.c***/
-int atoi(char *);
-int delimi(char, char *);
+int wi_atoi(char *);
+int is_delimi(char, char *);
 int estwill_omega(int);
 int estwill_interactive(info_t *);
 

@@ -14,7 +14,7 @@ size_t estwill_len_oflist(const list_t *n)
 	while (n)
 	{
 		n = n->nextn;
-		b++;
+		g++;
 	}
 	return (g);
 }
@@ -28,7 +28,7 @@ size_t estwill_len_oflist(const list_t *n)
  */
 char **tostr_list(list_t *headnode)
 {
-	char *string;
+	char *str;
 	size_t d = estwill_len_oflist(headnode), f;
 	char **strings;
 	list_t *node1 = headnode;
@@ -39,10 +39,10 @@ char **tostr_list(list_t *headnode)
 	strings = malloc(sizeof(char *) * (d + 1));
 	if (!strings)
 		return (NULL);
-	for (d = 0; node1; nod1e = node1->nextn, d++)
+	for (d = 0; node1; node1 = node1->nextn, d++)
 	{
-		string = malloc(estwill_strlen(node1->string) + 1);
-		if (!string)
+		str = malloc(estwill_strlen(node1->str) + 1);
+		if (!str)
 		{
 			for (f = 0; f < d; f++)
 			free(strings[f]);
@@ -50,8 +50,8 @@ char **tostr_list(list_t *headnode)
 			return (NULL);
 		}
 
-	string = estwill_strcpy(string, node1->string);
-	strings[d] = string;
+	str = estwill_strcpy(str, node1->str);
+	strings[d] = str;
 	}
 	strings[d] = NULL;
 	return (strings);
@@ -74,7 +74,7 @@ size_t list_print(const list_t *n)
 		_estwillputs(estwill_change_num(n->numb, 10, 0));
 		estwill_putchar(':');
 		estwill_putchar(' ');
-		_estwillputs(n->str ? n->str : ‘(nil)’);
+		_estwillputs(n->str ? n->str : "(nil)");
 		_estwillputs("\n");
 		n = n->nextn;
 		e++;
@@ -94,7 +94,7 @@ size_t list_print(const list_t *n)
  * Return: Returns null or match node
  *
  */
-list_t *estwill_node_commence(list_t *hnode, char c, char *prefstr)
+list_t *estwill_node_commence(list_t *hnode, char *prefstr, char c)
 {
 	char *f = NULL;
 
@@ -117,13 +117,13 @@ list_t *estwill_node_commence(list_t *hnode, char c, char *prefstr)
  * Return: returns index of node or return -1.
  *
  */
-lsize_t estwill_find_indexof_node(list_t *headnode, list_t *my_node)
+ssize_t estwill_find_indexof_node(list_t *headnode, list_t *my_node)
 {
 	size_t q = 0;
 
 	while (headnode)
 	{
-		if (head == my_node)
+		if (headnode == my_node)
 			return (q);
 		headnode = headnode->nextn;
 		q++;

@@ -12,7 +12,7 @@
  * Return: if true 1, 0 if false.
  *
  */
-int estwill_is_cmd(char *path, info_t *info)
+int estwill_is_cmd(info_t *info, char *path)
 {
 	struct stat st;
 
@@ -69,7 +69,7 @@ char *estwill_get_path(info_t *info, char *command, char *string_path)
 		return (NULL);
 	if ((estwill_strlen(command) > 2) && estwill_starts_with(command, "./"))
 	{
-		if (estwill_command(info, command))
+		if (estwill_is_cmd(info, command))
 			return (command);
 	}
 	while (1)
@@ -84,7 +84,7 @@ char *estwill_get_path(info_t *info, char *command, char *string_path)
 				estwill_strcat(path12, "/");
 				estwill_strcat(path12, command);
 			}
-			if (estwill_command(info, path12))
+			if (estwill_is_cmd(info, path12))
 				return (path12);
 			if (!string_path[p])
 				break;

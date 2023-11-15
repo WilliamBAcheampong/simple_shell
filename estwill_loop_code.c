@@ -11,7 +11,7 @@
 int hshell(info_t *info, char **arguvec)
 {
 	int builtin_ret = 0;
-	lsize_t f = 0;
+	ssize_t f = 0;
 
 	while (f != -1 && builtin_ret != -2)
 	{
@@ -84,6 +84,7 @@ int look_for_builtin(info_t *info)
 /**
  * getcmd - Finds a command in PATH.
  * @info: The parameter & return info struct.
+ * 
  *
  * Return: returns void.
  *
@@ -100,7 +101,7 @@ void getcmd(info_t *info)
 		info->linecnt_flag = 0;
 	}
 	for (u = 0, k = 0; info->arg[u]; u++)
-		if (!delimi(info->arg[u], " \t\n"))
+		if (!is_delimi(info->arg[u], " \t\n"))
 		k++;
 	if (!k)
 	return;
@@ -145,7 +146,7 @@ void forkew_cmd(info_t *info)
 	}
 	if (child_pid1 == 0)
 	{
-		if (execve(info->argv, info->path, estwill_get_environ(info)) == -1)
+		if (execve(info->path, info->argv, estwill_get_environ(info)) == -1)
 		{
 			estwill_free_info(info, 1);
 			if (errno == EACCES)

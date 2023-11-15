@@ -56,7 +56,7 @@ static int x;
  * and errno is set appropriately.
  *
  */
-int _estwillputfd(int fd, char c)
+int _estwillputfd(char c, int fd)
 {
 	static int x;
 	static char buff1[ESTWILL_WRITE_BUFFER_SIZE];

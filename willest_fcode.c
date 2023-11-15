@@ -17,18 +17,18 @@ return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
 /**
- * is_delimiter - delimiter checker.
+ * is_delimi - delimiter checker.
  * @c: Character to be checked
  *
- * @delimiter: The delimiter, which is a string.
+ * @delim: The delimiter, which is a string.
  *
  * Return: When True 1 gets returned, 0 rather if False.
  *
  */
-int is_delimiter(char c, char *delimiter)
+int is_delimi(char c, char *delim)
 {
-	while (*delimiter)
-	if (*delimiter++ == c)
+	while (*delim)
+	if (*delim++ == c)
 		return (1);
 	return (0);
 }
@@ -49,7 +49,7 @@ if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 }
 
 /**
- * atoi - Used to convert string to integer.
+ * wi_atoi - Used to convert string to integer.
  * @s: The string.
  *
  * Return: returns 0 when no number can be found in the
@@ -57,7 +57,7 @@ if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
  *
  */
 
-int atoi(char *s)
+int wi_atoi(char *s)
 {
 
 unsigned int resultvalue = 0;

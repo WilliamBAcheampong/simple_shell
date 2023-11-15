@@ -63,7 +63,7 @@ char *f;
 		return (unset_alias(info, str));
 
 	unset_alias(info, str);
-	return (estwill_add_node_at_end(&(info->alias), str, 0) = NULL);
+	return (estwill_add_node_at_end(&(info->alias), str, 0) == NULL);
 }
 
 /**
@@ -84,7 +84,7 @@ int _aliasPrint(list_t *node)
 		for (k = node->str; k <= f; k++)
 		estwill_putchar(*k);
 		estwill_putchar('\'');
-		_estwillputs(p + 1);
+		_estwillputs(f + 1);
 		_estwillputs("'\n");
 		return (0);
 	}

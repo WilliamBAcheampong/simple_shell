@@ -13,7 +13,7 @@
 
 char **estwill_strtok(char *str, char *z)
 {
-	Int a, m;
+int a, m;
 int x;
 int k;
 int numbwords = 0;
@@ -23,9 +23,9 @@ int numbwords = 0;
 		return (NULL);
 
 	if (!z)
-		z = ‘ ‘;
+		z = " ";
 	for (a = 0; str[a] != '\0'; a++)
-		if (!delimi(str[a], z) && (delimi(str[a + 1], z) || !str[a + 1]))
+		if (!is_delimi(str[a], z) && (is_delimi(str[a + 1], z) || !str[a + 1]))
 			numbwords++;
 	if (numbwords == 0)
 		return (NULL);
@@ -34,12 +34,12 @@ int numbwords = 0;
 		return (NULL);
 	for (x = 0, a = 0; x < numbwords; x++)
 	{
-		while (delimi(str[a], z)
+		while (is_delimi(str[a], z))
 			a++;
 		k = 0;
-		while (!delimi(str[a + k], z) && str[a + k])
+		while (!is_delimi(str[a + k], z) && str[a + k])
 			k++;
-		h[j] = malloc((k + 1) * sizeof(char));
+		h[x] = malloc((k + 1) * sizeof(char));
 		if (!h[x])
 		{
 			for (k = 0; k < x; k++)
@@ -65,7 +65,7 @@ int numbwords = 0;
  * or NULL on failure.
  *
  */
-char **estwill_strtok1(char w, char *str)
+char **estwill_strtok1(char *str, char w)
 {
 	int e, r, u, f, numbwords = 0;
 	char **v;
@@ -97,7 +97,7 @@ char **estwill_strtok1(char w, char *str)
 			return (NULL);
 		}
 		for (f = 0; f < u; f++)
-			s[r][f] = str[e++];
+			v[r][f] = str[e++];
 		v[r][f] = 0;
 	}
 	v[r] = NULL;
