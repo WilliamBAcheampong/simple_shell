@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * estwill_len_oflist - Find out len of linked list.
+ * my_len_oflist - Find out len of linked list.
  * @n: First node pointer.
  *
  * Return: list size.
  *
  */
-size_t estwill_len_oflist(const list_t *n)
+size_t my_len_oflist(const list_t *n)
 {
 	size_t g = 0;
 
@@ -29,7 +29,7 @@ size_t estwill_len_oflist(const list_t *n)
 char **tostr_list(list_t *headnode)
 {
 	char *str;
-	size_t d = estwill_len_oflist(headnode), f;
+	size_t d = my_len_oflist(headnode), f;
 	char **strings;
 	list_t *node1 = headnode;
 
@@ -41,7 +41,7 @@ char **tostr_list(list_t *headnode)
 		return (NULL);
 	for (d = 0; node1; node1 = node1->nextn, d++)
 	{
-		str = malloc(estwill_strlen(node1->str) + 1);
+		str = malloc(my_strlen(node1->str) + 1);
 		if (!str)
 		{
 			for (f = 0; f < d; f++)
@@ -50,7 +50,7 @@ char **tostr_list(list_t *headnode)
 			return (NULL);
 		}
 
-	str = estwill_strcpy(str, node1->str);
+	str = my_strcpy(str, node1->str);
 	strings[d] = str;
 	}
 	strings[d] = NULL;
@@ -71,9 +71,9 @@ size_t list_print(const list_t *n)
 
 	while (n)
 	{
-		_willputs(estwill_change_num(n->numb, 10, 0));
-		estwill_putchar(':');
-		estwill_putchar(' ');
+		_willputs(my_change_num(n->numb, 10, 0));
+		my_putchar(':');
+		my_putchar(' ');
 		_willputs(n->str ? n->str : "(nil)");
 		_willputs("\n");
 		n = n->nextn;
@@ -83,7 +83,7 @@ size_t list_print(const list_t *n)
 }
 
 /**
- * estwill_node_commence - Returns node with
+ * my_node_commence - Returns node with
  * prefix starting string.
  *
  * @hnode: list head pointer.
@@ -94,13 +94,13 @@ size_t list_print(const list_t *n)
  * Return: Returns null or match node
  *
  */
-list_t *estwill_node_commence(list_t *hnode, char *prefstr, char c)
+list_t *my_node_commence(list_t *hnode, char *prefstr, char c)
 {
 	char *f = NULL;
 
 	while (hnode)
 	{
-		f = estwill_starts_with(hnode->str, prefstr);
+		f = my_starts_with(hnode->str, prefstr);
 		if (f && ((c == -1) || (*f == c)))
 			return (hnode);
 		hnode = hnode->nextn;
@@ -109,7 +109,7 @@ list_t *estwill_node_commence(list_t *hnode, char *prefstr, char c)
 }
 
 /**
- * estwill_find_indexof_node - Gets the index of a node.
+ * my_find_indexof_node - Gets the index of a node.
  * @headnode: list head pointer.
  *
  * @my_node: node pointer.
@@ -117,7 +117,7 @@ list_t *estwill_node_commence(list_t *hnode, char *prefstr, char c)
  * Return: returns index of node or return -1.
  *
  */
-ssize_t estwill_find_indexof_node(list_t *headnode, list_t *my_node)
+ssize_t my_find_indexof_node(list_t *headnode, list_t *my_node)
 {
 	size_t q = 0;
 

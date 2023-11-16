@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * estwill_exit - Exits the shell.
+ * my_exit - Exits the shell.
  *
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
@@ -9,7 +9,7 @@
  * (0) if info.argv[0] is not equal to ‘exit’.
  *
  */
-int estwill_exit(info_t *info)
+int my_exit(info_t *info)
 {
 	int checkingexit;
 
@@ -19,9 +19,9 @@ int estwill_exit(info_t *info)
 		if (checkingexit == -1)
 		{
 			info->status = 2;
-			estwill_errorPrint(info, "Illegal number: ");
-			_estwillputs(info->argv[1]);
-			_estwillputchar('\n');
+			my_errorPrint(info, "Illegal number: ");
+			_myputs(info->argv[1]);
+			_myputchar('\n');
 			return (1);
 		}
 		info->errcode_numb = est_atoi(info->argv[1]);
@@ -32,7 +32,7 @@ int estwill_exit(info_t *info)
 }
 
 /**
- * estwill_mcd - Process current directory or folder changer.
+ * my_mcd - Process current directory or folder changer.
  *
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
@@ -40,9 +40,9 @@ int estwill_exit(info_t *info)
  * Return: Always returns 0.
  *
  */
-int estwill_mcd(info_t *info)
+int my_mcd(info_t *info)
 {
-	char *y, *dir, buffer[1024];
+char *y, *dir, buffer[1024];
 	int ret_chdir;
 y = getcwd(buffer, 1024);
 
@@ -57,15 +57,15 @@ y = getcwd(buffer, 1024);
 			else
 			ret_chdir = chdir(dir);
 	}
-	else if (estwill_strcmp(info->argv[1], "-") == 0)
+	else if (my_strcmp(info->argv[1], "-") == 0)
 	{
 		if (!_getenv(info, "OLDPWD="))
 		{
 			_willputs(y);
-			estwill_putchar('\n');
+			my_putchar('\n');
 			return (1);
 		}
-		_willputs(_getenv(info, "OLDPWD=")), estwill_putchar('\n');
+		_willputs(_getenv(info, "OLDPWD=")), my_putchar('\n');
 		ret_chdir = /* TODO: an idea of of what this would be?? */
 			chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
 	}
@@ -73,19 +73,19 @@ y = getcwd(buffer, 1024);
 	ret_chdir = chdir(info->argv[1]);
 	if (ret_chdir == -1)
 	{
-		estwill_errorPrint(info, "I cannot change directory into");
-		_estwillputs(info->argv[1]), _estwillputchar('\n');
+		my_errorPrint(info, "I cannot change directory into");
+		_myputs(info->argv[1]), _myputchar('\n');
 	}
 	else
 	{
-		estwill_setenv(info, "OLDPWD", _getenv(info, "PWD="));
-		estwill_setenv(info, "PWD", getcwd(buffer, 1024));
+		my_setenv(info, "OLDPWD", _getenv(info, "PWD="));
+		my_setenv(info, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
 }
 
 /**
- * estwill_help - Current process directory changer.
+ * my_help - Current process directory changer.
  *
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
@@ -93,7 +93,7 @@ y = getcwd(buffer, 1024);
  * Return: always 0.
  *
  */
-int estwill_help(info_t *info)
+int my_help(info_t *info)
 {
 	char **my_arg_array;
 

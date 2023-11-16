@@ -14,41 +14,41 @@
 #include <errno.h>
 
 /* 1 if using system getline() */
-#define ESTWILL_GET_LINE 0
-#define ESTWILL_STRTOK  0
+#define MY_GET_LINE 0
+#define MY_STRTOK  0
 
 /* for cmd chaining */
-#define ESTWILL_COMMAND_NORM    0
-#define ESTWILL_COMMAND_OR      1
-#define ESTWILL_COMMAND_AND     2
-#define ESTWILL_COMMAND_CHAIN   3
+#define MY_COMMAND_NORM    0
+#define MY_COMMAND_OR      1
+#define MY_COMMAND_AND     2
+#define MY_COMMAND_CHAIN   3
 
 /* for write, read or write buffers */
-#define ESTWILL_READ_BUFFER_SIZE	1024
-#define ESTWILL_WRITE_BUFFER_SIZE	1024
-#define ESTWILL_BUFFER_FLUSH		-1
+#define MY_READ_BUFFER_SIZE	1024
+#define MY_WRITE_BUFFER_SIZE	1024
+#define MY_BUFFER_FLUSH		-1
 
-#define ESTWILL_HISTORY_FILE    ".My custom shell history"
-#define ESTWILL_HISTORY_MAX     5037
+#define MY_HISTORY_FILE    ".My custom shell history"
+#define MY_HISTORY_MAX     5037
 
 /* for _convertingnumber() */
-#define ESTWILL_TO_LOWCASE    1
-#define ESTWILL_TO_UNSIGNED        2
+#define MY_TO_LOWCASE    1
+#define MY_TO_UNSIGNED        2
 
 
 extern char **environ;
 
 /**
- * struct estwill_list_string - Singly linked list.
+ * struct my_list_string - Singly linked list.
  * @numb: the number field
  * @str: a string
  * @nextn: points to the next node
  */
-typedef struct estwill_list_string
+typedef struct my_list_string
 {
 int numb;
 char *str;
-struct estwill_list_string *nextn;
+struct my_list_string *nextn;
 }
 list_t;
 
@@ -111,7 +111,7 @@ char *type;
 int (*funct)(info_t *);
 } builtin_table;
 
-/********* estwill_loop_code.c *****/
+/********* my_loop_code.c *****/
 int look_for_builtin(info_t *);
 int hshell(info_t*, char **);
 void getcmd(info_t *);
@@ -120,149 +120,149 @@ void forkew_cmd(info_t *);
 
 
 
-/**** estwill_loop_hshell.c *******/
-int estwill_loop_hshell(char **);
+/**** my_loop_hshell.c *******/
+int my_loop_hshell(char **);
 
 
 
 /****** acterrors_code.c **********/
-int _estwillputchar(char);
-void _estwillputs(char *);
-int _estwillputfd(char c, int fd);
-int _estwillputsfd(char *str, int fd);
+int _myputchar(char);
+void _myputs(char *);
+int _myputfd(char c, int fd);
+int _myputsfd(char *str, int fd);
 
 /***** willeststring1_code.c*************/
-char *estwill_strdup(const char *);
-char *estwill_strcpy(char *, char *);
-int estwill_putchar(char);
+char *my_strdup(const char *);
+char *my_strcpy(char *, char *);
+int my_putchar(char);
 void _willputs(char *);
 
 
 
 
 /************** exit_code.c****/
-char *estwill_strchr(char *, char);
-char *estwill_strncpy(char *, char *, int);
-char *estwill_strncat(char *, char *, int);
+char *my_strchr(char *, char);
+char *my_strncpy(char *, char *, int);
+char *my_strncat(char *, char *, int);
 
-/********* estwill_string.c ***/
-int estwill_strcmp(char *, char *);
-char *estwill_starts_with(const char *, const char *);
-char *estwill_strcat(char *, char *);
-int estwill_strlen(char *);
+/********* my_string.c ***/
+int my_strcmp(char *, char *);
+char *my_starts_with(const char *, const char *);
+char *my_strcat(char *, char *);
+int my_strlen(char *);
 
 
 
 /*** my_tokenmaker_code.c *********/
-char **estwill_strtok(char *, char *);
-char **estwill_strtok1(char *, char);
+char **my_strtok(char *, char *);
+char **my_strtok1(char *, char);
 
 
 /**** willest_inbuilt_code.c *****/
-int estwill_help(info_t *);
-int estwill_mcd(info_t *);
-int estwill_exit(info_t *);
+int my_help(info_t *);
+int my_mcd(info_t *);
+int my_exit(info_t *);
 
 /**** est_parser_code.c *******/
-char *estwill_dupli_chars(char *, int, int);
-int estwill_is_cmd(info_t*, char *);
-char *estwill_get_path(info_t*, char *, char *);
+char *my_dupli_chars(char *, int, int);
+int my_is_cmd(info_t*, char *);
+char *my_get_path(info_t*, char *, char *);
 
 
 
 /***  willest_reallocation_code.c */
 void *_realloc(void *, unsigned int, unsigned int);
-void estwill_jfree(char **);
-char *estwill_setmemory(char *, char, unsigned int);
+void my_jfree(char **);
+char *my_setmemory(char *, char, unsigned int);
 
 
 
 /******* mem_code.c ****/
-int estwill_dfree(void **);
+int my_dfree(void **);
 
 
 
 /********** estee_err.c ***/
-void estwill_delete_comment(char *);
+void my_delete_comment(char *);
 int est_atoi(char *);
-char *estwill_change_num(long int, int, int);
-int estwill_print_p(int, int);
-void estwill_errorPrint(info_t *, char *);
+char *my_change_num(long int, int, int);
+int my_print_p(int, int);
+void my_errorPrint(info_t *, char *);
 
 
 
 
 /****** willest_fcode.c***/
 int wi_atoi(char *);
-int is_delimi(char, char *);
-int estwill_omega(int);
-int estwill_interactive(info_t *);
+int is_delimiter(char, char *);
+int my_omega(int);
+int my_interactive(info_t *);
 
 
 
 
 /***** inbuiltb_code.c ************/
-int estwill_ouralias(info_t *);
-int estwill_ourhist(info_t *);
+int my_ouralias(info_t *);
+int my_ourhist(info_t *);
 
 /**** wil_retline.c***/
-ssize_t estwill_get_input(info_t *);
-int estwill_get_line(info_t*, char **, size_t *);
-void estwill_handle_sigint(int);
+ssize_t my_get_input(info_t *);
+int my_get_line(info_t*, char **, size_t *);
+void my_handle_sigint(int);
 
-/********** estwill_get_info.c ******/
-void estwill_free_info(info_t *, int);
-void estwill_remove_info(info_t *);
-void estwill_info_intialise(info_t*, char **);
+/********** my_get_info.c ******/
+void my_free_info(info_t *, int);
+void my_remove_info(info_t *);
+void my_info_intialise(info_t*, char **);
 
 
 /******** wiest_environment_code.c ***/
 char *_getenv(info_t *, const char *);
 int _oursetenv(info_t *);
 int _ourenv(info_t *);
-int estwill_fill_env_list(info_t *);
+int my_fill_env_list(info_t *);
 int _myunsetenv(info_t *);
 
 
 /* shell_getenviron.c ****/
-char **estwill_get_environ(info_t *);
-int estwill_unsetenv(info_t *, char *);
-int estwill_setenv(info_t *, char *, char *);
+char **my_get_environ(info_t *);
+int my_unsetenv(info_t *, char *);
+int my_setenv(info_t *, char *, char *);
 
 
 
 /*** our_history_code.c **********/
-char *estwill_get_history_file(info_t *info);
-int estwill_hist_record(info_t *info);
-int estwill_hist_construct_list(info_t *info, char *buf, int linecnt);
-int estwill_history_read(info_t *info);
-int estwill_hist_reassign(info_t *info);
+char *my_get_history_file(info_t *info);
+int my_hist_record(info_t *info);
+int my_hist_construct_list(info_t *info, char *buf, int linecnt);
+int my_history_read(info_t *info);
+int my_hist_reassign(info_t *info);
 
 
 /********** ourshell_vars_code.c ***/
 int ischain(info_t *, char *, size_t *);
-int estwill_var_change(info_t *);
-int estwill_alias_change(info_t *);
-void estwill_check_chain(info_t *, char *, size_t *, size_t, size_t);
-int estwill_str_change(char **, char *);
+int my_var_change(info_t *);
+int my_alias_change(info_t *);
+void my_check_chain(info_t *, char *, size_t *, size_t, size_t);
+int my_str_change(char **, char *);
 
 
 
 
 /* mylists_code.c */
-size_t estwill_string_list_print(const list_t *);
-list_t *estwill_add_node_at_end(list_t **, const char *, int);
-int estwill_remove_index_node(list_t **, unsigned int);
-void estwill_free_list(list_t **);
-list_t *estwill_nodeaddition(list_t **, const char *, int);
+size_t my_string_list_print(const list_t *);
+list_t *my_add_node_at_end(list_t **, const char *, int);
+int my_remove_index_node(list_t **, unsigned int);
+void my_free_list(list_t **);
+list_t *my_nodeaddition(list_t **, const char *, int);
 
 
 /**** ourlists1.c ***********/
 size_t list_print(const list_t *);
-list_t *estwill_node_commence(list_t *, char *, char);
+list_t *my_node_commence(list_t *, char *, char);
 char **tostr_list(list_t *);
-ssize_t estwill_find_indexof_node(list_t *, list_t *);
-size_t estwill_len_oflist(const list_t *);
+ssize_t my_find_indexof_node(list_t *, list_t *);
+size_t my_len_oflist(const list_t *);
 
 
 

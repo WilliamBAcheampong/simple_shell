@@ -11,7 +11,7 @@
  */
 int _ourenv(info_t *info)
 {
-	estwill_string_list_print(info->env);
+	my_string_list_print(info->env);
 	return (0);
 }
 
@@ -33,7 +33,7 @@ list_t *node = info->env;
 
 	while (node)
 	{
-		f = estwill_starts_with(node->str, name);
+		f = my_starts_with(node->str, name);
 		if (f && *f)
 			return (f);
 		node = node->nextn;
@@ -54,10 +54,10 @@ int _oursetenv(info_t *info)
 {
 	if (info->argc != 3)
 	{
-		_estwillputs("Number of arguments is wrong\n");
+		_myputs("Number of arguments is wrong\n");
 		return (1);
 	}
-	if (estwill_setenv(info, info->argv[1], info->argv[2]))
+	if (my_setenv(info, info->argv[1], info->argv[2]))
 		return (0);
 	return (1);
 }
@@ -77,17 +77,17 @@ int _myunsetenv(info_t *info)
 
 	if (info->argc == 1)
 	{
-	_estwillputs("Arguments are not enough.\n");
+	_myputs("Arguments are not enough.\n");
 	return (1);
 	}
 	for (d = 1; d <= info->argc; d++)
-		estwill_unsetenv(info, info->argv[d]);
+		my_unsetenv(info, info->argv[d]);
 
 	return (0);
 }
 
 /**
- * estwill_fill_env_list - Fills env linked list.
+ * my_fill_env_list - Fills env linked list.
  *
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
@@ -95,14 +95,14 @@ int _myunsetenv(info_t *info)
  * Return: always returns 0.
  *
  */
-int estwill_fill_env_list(info_t *info)
+int my_fill_env_list(info_t *info)
 {
 
 size_t d;
 list_t *node1 = NULL;
 
 	for (d = 0; environ[d]; d++)
-	estwill_add_node_at_end(&node1, environ[d], 0);
+	my_add_node_at_end(&node1, environ[d], 0);
 	info->env = node1;
 	return (0);
 }

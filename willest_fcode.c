@@ -1,46 +1,46 @@
 #include "shell.h"
 
 /**
- * estwill_interactive - True is returned if shell is in
- * estwill_interactive mode.
+ * my_interactive - True is returned if shell is in
+ * my_interactive mode.
  *
  * @info: address of struct.
  *
- * Return: if estwill_interactive mode, 1 is returned
+ * Return: if my_interactive mode, 1 is returned
  * if not, 0 is returned
  *
  *
  */
-int estwill_interactive(info_t *info)
+int my_interactive(info_t *info)
 {
 return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
 /**
- * is_delimi - delimiter checker.
+ * is_delimiter - delimiter checker.
  * @c: Character to be checked
  *
- * @delim: The delimiter, which is a string.
+ * @delimi: The delimiter, which is a string.
  *
  * Return: When True 1 gets returned, 0 rather if False.
  *
  */
-int is_delimi(char c, char *delim)
+int is_delimiter(char c, char *delimi)
 {
-	while (*delim)
-	if (*delim++ == c)
+	while (*delimi)
+	if (*delimi++ == c)
 		return (1);
 	return (0);
 }
 
 /**
- * estwill_isalphabet - Alphabetic character checker.
+ * my_isalphabet - Alphabetic character checker.
  * @c: Input character.
  *
  * Return: if c is alphabetic 1 is, 0 if c is not.
  *
  */
-int estwill_isalphabet(int c)
+int my_isalphabet(int c)
 {
 if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 	return (1);
@@ -60,7 +60,7 @@ if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 int wi_atoi(char *s)
 {
 
-unsigned int resultvalue = 0;
+unsigned int result = 0;
 int v, flag = 0, output, sign = 1;
 
 
@@ -72,17 +72,17 @@ for (v = 0; s[v] != '\0' && flag != 2; v++)
 	if (s[v] >= '0' && s[v] <= '9')
 	{
 		flag = 1;
-		resultvalue *= 10;
-		resultvalue += (s[v] - '0');
+		result *= 10;
+		result += (s[v] - '0');
 	}
 	else if (flag == 1)
 		flag = 2;
 }
 
 	if (sign == -1)
-		output = -resultvalue;
+		output = -result;
 	else
-		output = resultvalue;
+		output = result;
 
 	return (output);
 }

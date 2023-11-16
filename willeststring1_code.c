@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * estwill_strcpy - Copies string.
+ * my_strcpy - Copies string.
  *
  * @destination: The destination.
  *
@@ -10,7 +10,7 @@
  * Return: destination pointer.
  *
  */
-char *estwill_strcpy(char *destination, char *source)
+char *my_strcpy(char *destination, char *source)
 {
 	int t = 0;
 
@@ -26,14 +26,14 @@ char *estwill_strcpy(char *destination, char *source)
 }
 
 /**
- * estwill_strdup - Duplicates a string.
+ * my_strdup - Duplicates a string.
  *
  * @str: string.
  *
  * Return: Points to the duplicated string.
  *
  */
-char *estwill_strdup(const char *str)
+char *my_strdup(const char *str)
 {
 	int len = 0;
 	char *retvalue;
@@ -62,17 +62,17 @@ void _willputs(char *str)
 {
 	int u = 0;
 
-	if (!str)
+if (!str)
 	return;
 	while (str[u] != '\0')
 	{
-		estwill_putchar(str[u]);
+		my_putchar(str[u]);
 		u++;
 	}
 }
 
 /**
- * estwill_putchar - Writes the character c to stdout.
+ * my_putchar - Writes the character c to stdout.
  * @c: The character.
  *
  * Return: On success 1.
@@ -80,17 +80,17 @@ void _willputs(char *str)
  * On error, -1 is returned, and errno is set appropriately.
  *
  */
-int estwill_putchar(char c)
+int my_putchar(char c)
 {
-	static char buf[ESTWILL_WRITE_BUFFER_SIZE];
+	static char buf[MY_WRITE_BUFFER_SIZE];
 	static int e;
 
-	if (c == ESTWILL_BUFFER_FLUSH || e >= ESTWILL_WRITE_BUFFER_SIZE)
+	if (c == MY_BUFFER_FLUSH || e >= MY_WRITE_BUFFER_SIZE)
 	{
 	write(1, buf, e);
 	e = 0;
 	}
-	if (c != ESTWILL_BUFFER_FLUSH)
+	if (c != MY_BUFFER_FLUSH)
 		buf[e++] = c;
 	return (1);
 }

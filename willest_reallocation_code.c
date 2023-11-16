@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * estwill_setmemory - Fills memory with a constant byte.
+ * my_setmemory - Fills memory with a constant byte.
  * @a: Memory area pointer.
  * @t: The byte that *s is fill with.
  *
@@ -9,7 +9,7 @@
  * Return: pointer to the memory area s, (s).
  *
  */
-char *estwill_setmemory(char *a, char t, unsigned int f)
+char *my_setmemory(char *a, char t, unsigned int f)
 {
 	unsigned int m;
 
@@ -19,10 +19,10 @@ char *estwill_setmemory(char *a, char t, unsigned int f)
 }
 
 /**
- * estwill_jfree - Frees a string of strings.
+ * my_jfree - Frees a string of strings.
  * @ee: String of strings
  */
-void estwill_jfree(char **ee)
+void my_jfree(char **ee)
 {
 	char **y = ee;
 

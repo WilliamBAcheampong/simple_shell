@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * estwill_get_history_file- Gets the history file.
+ * my_get_history_file- Gets the history file.
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
  *
@@ -10,35 +10,35 @@
  *
  */
 
-char *estwill_get_history_file(info_t *info)
+char *my_get_history_file(info_t *info)
 {
 	char *dir, *buff;
 
 	dir = _getenv(info, "HOME=");
 	if (!dir)
 		return (NULL);
-	buff = malloc(sizeof(char) * (estwill_strlen(dir) + estwill_strlen(ESTWILL_HISTORY_FILE) + 2));
+	buff = malloc(sizeof(char) * (my_strlen(dir) + my_strlen(MY_HISTORY_FILE) + 2));
 	if (!buff)
 		return (NULL);
 	buff[0] = 0;
-	estwill_strcpy(buff, dir);
-	estwill_strcat(buff, "/");
-	estwill_strcat(buff, ESTWILL_HISTORY_FILE);
+	my_strcpy(buff, dir);
+	my_strcat(buff, "/");
+	my_strcat(buff, MY_HISTORY_FILE);
 	return (buff);
 }
 
 /**
- * estwill_hist_record - Create a new file, or append to an
+ * my_hist_record - Create a new file, or append to an
  * an already existing file.
  * @info: The parameter struct.
  *
  * Return: 1 on success, else -1.
  *
  */
-int estwill_hist_record(info_t *info)
+int my_hist_record(info_t *info)
 {
 	list_t *node = NULL;
-	char *nameoffile = estwill_get_history_file(info);
+	char *nameoffile = my_get_history_file(info);
 	ssize_t fd;
 
 	if (!nameoffile)
@@ -50,30 +50,30 @@ int estwill_hist_record(info_t *info)
 	return (-1);
 	for (node = info->history; node; node = node->nextn)
 	{
-	_estwillputsfd(node->str, fd);
-	_estwillputfd('\n', fd);
+	_myputsfd(node->str, fd);
+	_myputfd('\n', fd);
 	}
-	_estwillputfd(ESTWILL_BUFFER_FLUSH, fd);
+	_myputfd(MY_BUFFER_FLUSH, fd);
 	close(fd);
 	return (1);
 }
 
 /**
- * estwill_history_read - Reads history from a file.
+ * my_history_read - Reads history from a file.
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
  *
  * Return: history_cnt on success, 0 is returned if not successful.
  *
  */
-int estwill_history_read(info_t *info)
+int my_history_read(info_t *info)
 {
 	ssize_t fd, lenofrd, sizeofg = 0;
 	struct stat st;
 	int h;
 int end = 0;
 int linecnt = 0;
-	char *buff = NULL, *nameoffile = estwill_get_history_file(info);
+	char *buff = NULL, *nameoffile = my_get_history_file(info);
 
 	if (!nameoffile)
 		return (0);
@@ -97,21 +97,21 @@ int linecnt = 0;
 		if (buff[h] == '\n')
 		{
 			buff[h] = 0;
-			estwill_hist_construct_list(info, buff + end, linecnt++);
+			my_hist_construct_list(info, buff + end, linecnt++);
 			end = h + 1;
 		}
 	if (end != h)
-		estwill_hist_construct_list(info, buff + end, linecnt++);
+		my_hist_construct_list(info, buff + end, linecnt++);
 	free(buff);
 	info->history_cnt = linecnt;
-	while (info->history_cnt-- >= ESTWILL_HISTORY_MAX)
-		estwill_remove_index_node(&(info->history), 0);
-	estwill_hist_reassign(info);
+	while (info->history_cnt-- >= MY_HISTORY_MAX)
+		my_remove_index_node(&(info->history), 0);
+	my_hist_reassign(info);
 	return (info->history_cnt);
 }
 
 /**
- * estwill_hist_construct_list - Adds entries to a history linked list.
+ * my_hist_construct_list - Adds entries to a history linked list.
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
  *
@@ -121,13 +121,13 @@ int linecnt = 0;
  * Return: 0.
  *
  */
-int estwill_hist_construct_list(info_t *info, char *buffer, int linecnt)
+int my_hist_construct_list(info_t *info, char *buffer, int linecnt)
 {
 	list_t *mynode = NULL;
 
 	if (info->history)
 		mynode = info->history;
-	estwill_add_node_at_end(&mynode, buffer, linecnt);
+	my_add_node_at_end(&mynode, buffer, linecnt);
 
 	if (!info->history)
 		info->history = mynode;
@@ -135,17 +135,18 @@ int estwill_hist_construct_list(info_t *info, char *buffer, int linecnt)
 }
 
 /**
- * estwill_hist_reassign - Reallocates numbers to the history
+ * my_hist_reassign - Reallocates numbers to the history
  * linked list after changes.
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
  * Return: New history_cnt.
  *
  */
-int estwill_hist_reassign(info_t *info)
+int my_hist_reassign(info_t *info)
 {
 int e = 0;
 list_t *node = info->history;
+
 
 	while (node)
 	{

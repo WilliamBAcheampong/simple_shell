@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * estwill_dfree - Frees a pointer and make
+ * my_dfree - Frees a pointer and make
  * address of the pointer null.
  *
  * @pointer: address of the pointer to be freed.
@@ -11,7 +11,7 @@
  *
  */
 
-int estwill_dfree(void **pointer)
+int my_dfree(void **pointer)
 {
 	if (pointer && *pointer)
 	{

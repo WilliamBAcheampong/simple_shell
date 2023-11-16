@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * estwill_nodeaddition - Adds a node to the start of a list.
+ * my_nodeaddition - Adds a node to the start of a list.
  * @headnode: Address to the head node pointer.
  *
  * @str: String field of node.
@@ -9,7 +9,7 @@
  * Return: size of list is returned.
  *
  */
-list_t *estwill_nodeaddition(list_t **headnode, const char *str, int numb)
+list_t *my_nodeaddition(list_t **headnode, const char *str, int numb)
 {
 	list_t *new_headnode;
 
@@ -18,11 +18,11 @@ list_t *estwill_nodeaddition(list_t **headnode, const char *str, int numb)
 	new_headnode = malloc(sizeof(list_t));
 	if (!new_headnode)
 		return (NULL);
-	estwill_setmemory((void *)new_headnode, 0, sizeof(list_t));
+	my_setmemory((void *)new_headnode, 0, sizeof(list_t));
 	new_headnode->numb = numb;
 	if (str)
 	{
-		new_headnode->str = estwill_strdup(str);
+		new_headnode->str = my_strdup(str);
 		if (!new_headnode->str)
 		{
 		free(new_headnode);
@@ -35,7 +35,7 @@ list_t *estwill_nodeaddition(list_t **headnode, const char *str, int numb)
 }
 
 /**
- * estwill_add_node_at_end - Adds a node to the end of a list.
+ * my_add_node_at_end - Adds a node to the end of a list.
  * @head_node: address to head_node pointer.
  *
  * @str: Node’s string field.
@@ -43,7 +43,7 @@ list_t *estwill_nodeaddition(list_t **headnode, const char *str, int numb)
  *
  * Return:  returns size of list.
  */
-list_t *estwill_add_node_at_end(list_t **head_node, const char *str, int numb)
+list_t *my_add_node_at_end(list_t **head_node, const char *str, int numb)
 {
 	list_t *new_node, *node;
 
@@ -54,11 +54,11 @@ list_t *estwill_add_node_at_end(list_t **head_node, const char *str, int numb)
 	new_node = malloc(sizeof(list_t));
 	if (!new_node)
 		return (NULL);
-	estwill_setmemory((void *)new_node, 0, sizeof(list_t));
+	my_setmemory((void *)new_node, 0, sizeof(list_t));
 	new_node->numb = numb;
 	if (str)
 	{
-		new_node->str = estwill_strdup(str);
+		new_node->str = my_strdup(str);
 		if (!new_node->str)
 		{
 			free(new_node);
@@ -77,7 +77,7 @@ list_t *estwill_add_node_at_end(list_t **head_node, const char *str, int numb)
 }
 
 /**
- * estwill_string_list_print - prints only the strings
+ * my_string_list_print - prints only the strings
  * of the list_t linked list.
  *
  * @n: Pointer to the beginning node.
@@ -85,13 +85,13 @@ list_t *estwill_add_node_at_end(list_t **head_node, const char *str, int numb)
  * Return: returns size of list.
  *
  */
-size_t estwill_string_list_print(const list_t *n)
+size_t my_string_list_print(const list_t *n)
 {
 	size_t v = 0;
 
 	while (n)
 	{
-		_willputs(n->str ? n->str : "(nill)");
+		_willputs(n->str ? n->str : " (nill) ");
 		_willputs("\n");
 		n = n->nextn;
 		v++;
@@ -100,14 +100,14 @@ size_t estwill_string_list_print(const list_t *n)
 }
 
 /**
- * estwill_remove_index_node  - Deletes node at a specified index.
+ * my_remove_index_node  - Deletes node at a specified index.
  * @head_node: Address of first node pointer.
  * @indnode: Indnode of node to be deleted.
  *
  * Return: 0 if it fails, 1 on success.
  *
  */
-int estwill_remove_index_node(list_t **head_node, unsigned int indnode)
+int my_remove_index_node(list_t **head_node, unsigned int indnode)
 {
 	unsigned int r = 0;
 
@@ -142,12 +142,12 @@ list_t *node, *previousnode;
 }
 
 /**
- * estwill_free_list - Frees every node of the list.
+ * my_free_list - Frees every node of the list.
  * @head_node_ptr: Address of head_node pointer.
  *
  * Return: returns void.
  */
-void estwill_free_list(list_t **head_node_ptr)
+void my_free_list(list_t **head_node_ptr)
 {
 	list_t *node, *head_node, *nextn_node;
 

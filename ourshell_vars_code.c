@@ -21,18 +21,18 @@ int ischain(info_t *info, char *buff1, size_t *k)
 	{
 	buff1[g] = 0;
 	g++;
-	info->cmd_buffer_type = ESTWILL_COMMAND_OR;
+	info->cmd_buffer_type = MY_COMMAND_OR;
 	}
 	else if (buff1[g] == '&' && buff1[g + 1] == '&')
 	{
 		buff1[g] = 0;
 		g++;
-		info->cmd_buffer_type = ESTWILL_COMMAND_AND;
+		info->cmd_buffer_type = MY_COMMAND_AND;
 	}
 	else if (buff1[g] == ';') /* End of command*/
 	{
 	buff1[g] = 0; /* Null replaces semi-colon*/
-	info->cmd_buffer_type = ESTWILL_COMMAND_CHAIN;
+	info->cmd_buffer_type = MY_COMMAND_CHAIN;
 	}
 	else
 	return (0);
@@ -42,7 +42,7 @@ int ischain(info_t *info, char *buff1, size_t *k)
 }
 
 /**
- * estwill_check_chain - Check to know if to continue chaining
+ * my_check_chain - Check to know if to continue chaining
  *  based on last status.
 * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
@@ -57,11 +57,11 @@ int ischain(info_t *info, char *buff1, size_t *k)
  * Return: Void.
  *
  */
-void estwill_check_chain(info_t *info, char *buff1, size_t *b, size_t f, size_t len)
+void my_check_chain(info_t *info, char *buff1, size_t *b, size_t f, size_t len)
 {
 	size_t k = *b;
 
-	if (info->cmd_buffer_type == ESTWILL_COMMAND_AND)
+	if (info->cmd_buffer_type == MY_COMMAND_AND)
 	{
 		if (info->status)
 		{
@@ -69,7 +69,7 @@ void estwill_check_chain(info_t *info, char *buff1, size_t *b, size_t f, size_t 
 			k = len;
 		}
 	}
-	if (info->cmd_buffer_type == ESTWILL_COMMAND_OR)
+	if (info->cmd_buffer_type == MY_COMMAND_OR)
 	{
 		if (!info->status)
 		{
@@ -82,14 +82,14 @@ void estwill_check_chain(info_t *info, char *buff1, size_t *b, size_t f, size_t 
 }
 
 /**
- * estwill_alias_change - Replaces an aliases in the tokenized string.
+ * my_alias_change - Replaces an aliases in the tokenized string.
 * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
  *
  * Return: 1 if replaced, 0 if not replaced.
  *
  */
-int estwill_alias_change(info_t *info)
+int my_alias_change(info_t *info)
 {
 	char *f;
 int k;
@@ -97,16 +97,16 @@ int k;
 
 	for (k = 0; k < 10; k++)
 	{
-		node = estwill_node_commence(info->alias, info->argv[0], '=');
+		node = my_node_commence(info->alias, info->argv[0], '=');
 		if (!node)
 		return (0);
 
 free(info->argv[0]);
-		f = estwill_strchr(node->str, '=');
+		f = my_strchr(node->str, '=');
 		if (!f)
 		return (0);
 
-f = estwill_strdup(f + 1);
+f = my_strdup(f + 1);
 		if (!f)
 			return (0);
 		info->argv[0] = f;
@@ -115,7 +115,7 @@ f = estwill_strdup(f + 1);
 }
 
 /**
- * estwill_var_change - Replaces vars in tokenized string.
+ * my_var_change - Replaces vars in tokenized string.
  *
 * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
@@ -123,7 +123,7 @@ f = estwill_strdup(f + 1);
  * Return: 1 if replaced, 0 if opposite
  *
  */
-int estwill_var_change(info_t *info)
+int my_var_change(info_t *info)
 {
 	int e = 0;
 
@@ -134,33 +134,33 @@ int estwill_var_change(info_t *info)
 		if (info->argv[e][0] != '$' || !info->argv[e][1])
 			continue;
 
-		if (!estwill_strcmp(info->argv[e], "$?"))
+		if (!my_strcmp(info->argv[e], "$?"))
 		{
-			estwill_str_change(&(info->argv[e]),
-			estwill_strdup(estwill_change_num(info->status, 10, 0)));
+			my_str_change(&(info->argv[e]),
+			my_strdup(my_change_num(info->status, 10, 0)));
 			continue;
 		}
-		if (!estwill_strcmp(info->argv[e], "$$"))
+		if (!my_strcmp(info->argv[e], "$$"))
 		{
-			estwill_str_change(&(info->argv[e]),
-			estwill_strdup(estwill_change_num(getpid(), 10, 0)));
+			my_str_change(&(info->argv[e]),
+			my_strdup(my_change_num(getpid(), 10, 0)));
 			continue;
 		}
-		node = estwill_node_commence(info->env, &info->argv[e][1], '=');
+		node = my_node_commence(info->env, &info->argv[e][1], '=');
 		if (node)
 		{
-			estwill_str_change(&(info->argv[e]),
-				estwill_strdup(estwill_strchr(node->str, '=') + 1));
+			my_str_change(&(info->argv[e]),
+				my_strdup(my_strchr(node->str, '=') + 1));
 			continue;
 		}
-		estwill_str_change(&info->argv[e], estwill_strdup(""));
+		my_str_change(&info->argv[e], my_strdup(""));
 
 	}
 	return (0);
 }
 
 /**
- * estwill_str_change - Replaces string.
+ * my_str_change - Replaces string.
  *
  * @old_address: old string address.
  *
@@ -169,7 +169,7 @@ int estwill_var_change(info_t *info)
  * Return: 1 if replaced, 0 if not.
  *
  */
-int estwill_str_change(char **old_address, char *new_address)
+int my_str_change(char **old_address, char *new_address)
 {
 	free(*old_address);
 	*old_address = new_address;

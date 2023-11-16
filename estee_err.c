@@ -31,7 +31,7 @@ int h = 0;
 }
 
 /**
- * estwill_errorPrint - Prints an error message
+ * my_errorPrint - Prints an error message
  *
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
@@ -42,25 +42,25 @@ int h = 0;
  * otherwise -1 on error.
  *
  */
-void estwill_errorPrint(info_t *info, char *errstr)
+void my_errorPrint(info_t *info, char *errstr)
 {
-	_estwillputs(info->fname);
+	_myputs(info->fname);
 
-	_estwillputs(": ");
+	_myputs(": ");
 
-	estwill_print_p(info->errline_cnt, STDERR_FILENO);
+	my_print_p(info->errline_cnt, STDERR_FILENO);
 
-	_estwillputs(": ");
+	_myputs(": ");
 
-	_estwillputs(info->argv[0]);
+	_myputs(info->argv[0]);
 
-	_estwillputs(": ");
+	_myputs(": ");
 
-	_estwillputs(errstr);
+	_myputs(errstr);
 }
 
 /**
- * estwill_print_p - Function to print decimal number.
+ * my_print_p - Function to print decimal number.
  *
  * @input: the input.
  *
@@ -69,20 +69,20 @@ void estwill_errorPrint(info_t *info, char *errstr)
  * Return: number of characters that are printed.
  *
  */
-int estwill_print_p(int fd, int input)
+int my_print_p(int fd, int input)
 {
 	unsigned int absolute, current;
-int (*_estwill_putchar)(char) = estwill_putchar;
+int (*_my_putchar)(char) = my_putchar;
 	int f, cnt = 0;
 
 
 	if (fd == STDERR_FILENO)
-	_estwill_putchar = _estwillputchar;
+	_my_putchar = _myputchar;
 
 if (input < 0)
 	{
 	absolute = -input;
-	_estwill_putchar('-');
+	_my_putchar('-');
 	cnt++;
 	}
 	else
@@ -92,19 +92,19 @@ if (input < 0)
 	{
 		if (absolute / f)
 		{
-		_estwill_putchar('0' + current / f);
+		_my_putchar('0' + current / f);
 		cnt++;
 		}
 		current %= f;
 	}
-	_estwill_putchar('0' + current);
+	_my_putchar('0' + current);
 	cnt++;
 
 	return (cnt);
 }
 
 /**
- * estwill_change_num - Function that is a converter,
+ * my_change_num - Function that is a converter,
  * this is a clone of itoa.
  *
  * @numb: number.
@@ -115,7 +115,7 @@ if (input < 0)
  * Return: string.
  *2
  */
-char *estwill_change_num(long int numb, int flags, int valofbase)
+char *my_change_num(long int numb, int flags, int valofbase)
 {
 	char signvalue = 0;
 
@@ -127,13 +127,13 @@ static char buffer[50];
 
 unsigned long q = numb;
 
-	if (!(flags & ESTWILL_TO_UNSIGNED) && numb < 0)
+	if (!(flags & MY_TO_UNSIGNED) && numb < 0)
 	{
 		q = -numb;
 		signvalue = '-';
 
 	}
-	array1 = flags & ESTWILL_TO_LOWCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	array1 = flags & MY_TO_LOWCASE ? "0123456789abcdef" : "0123456789ABCDEF";
 	ptr = &buffer[49];
 	*ptr = '\0';
 
@@ -148,7 +148,7 @@ unsigned long q = numb;
 }
 
 /**
- * estwill_delete_comment - function that interchange
+ * my_delete_comment - function that interchange
  * initial instance of '#' with '\0'.
  *
  * @buf: address of the string being modified.
@@ -156,7 +156,7 @@ unsigned long q = numb;
  * Return: Always 0.
  *
  */
-void estwill_delete_comment(char *buf)
+void my_delete_comment(char *buf)
 {
 	int a;
 

@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- *estwill_strncpy - Copy a string.
+ *my_strncpy - Copy a string.
  *
  *@destination: The destination of the copied string.
  *
@@ -10,7 +10,7 @@
  *Return: Concatenated string.
  *
  */
-char *estwill_strncpy(char *destination, char *src, int t)
+char *my_strncpy(char *destination, char *src, int t)
 {
 	int f, g;
 	char *s = destination;
@@ -34,7 +34,7 @@ char *estwill_strncpy(char *destination, char *src, int t)
 }
 
 /**
- *estwill_strncat - this concatenates two strings.
+ *my_strncat - this concatenates two strings.
  *
  *@destination: The 1st string.
  *@src: The 2nd string.
@@ -44,7 +44,7 @@ char *estwill_strncpy(char *destination, char *src, int t)
  *Return: the concatenated string.
  *
  */
-char *estwill_strncat(char *destination, char *src, int t)
+char *my_strncat(char *destination, char *src, int t)
 {
 	int f, g;
 	char *s = destination;
@@ -65,7 +65,7 @@ char *estwill_strncat(char *destination, char *src, int t)
 }
 
 /**
- *estwill_strchr - Locator of a character in a string.
+ *my_strchr - Locator of a character in a string.
  *@s: The string that will be parsed.
  *
  *@c: The character we want.
@@ -73,7 +73,7 @@ char *estwill_strncat(char *destination, char *src, int t)
  *Return: Return s, a pointer to the memory area s.
  *
  */
-char *estwill_strchr(char *s, char c)
+char *my_strchr(char *s, char c)
 {
 	do {
 		if (*s == c)

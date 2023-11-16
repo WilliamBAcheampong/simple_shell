@@ -1,14 +1,14 @@
 #include "shell.h"
 
 /**
- * _estwillputs - Prints the input string.
+ * _myputs - Prints the input string.
  *
  * @str: The string.
  *
  * Return:  Return nothing.
  *
  */
-void _estwillputs(char *str)
+void _myputs(char *str)
 {
 	int o = 0;
 
@@ -16,13 +16,13 @@ void _estwillputs(char *str)
 		return;
 	while (str[o] != '\0')
 	{
-		_estwillputchar(str[o]);
+		_myputchar(str[o]);
 		o++;
 	}
 }
 
 /**
- * _estwillputchar - Character c is writtenvto stderr.
+ * _myputchar - Character c is writtenvto stderr.
  *
  * @c: The character.
  *
@@ -30,23 +30,23 @@ void _estwillputs(char *str)
  * if an error, -1 is returned, and errno is set appropriately.
  *
  */
-int _estwillputchar(char c)
+int _myputchar(char c)
 {
-	static char buf[ESTWILL_WRITE_BUFFER_SIZE];
+	static char buf[MY_WRITE_BUFFER_SIZE];
 static int x;
 
-	if (c == ESTWILL_BUFFER_FLUSH || x >= ESTWILL_WRITE_BUFFER_SIZE)
+	if (c == MY_BUFFER_FLUSH || x >= MY_WRITE_BUFFER_SIZE)
 	{
 	write(2, buf, x);
 	x = 0;
 	}
-	if (c != ESTWILL_BUFFER_FLUSH)
+	if (c != MY_BUFFER_FLUSH)
 	buf[x++] = c;
 	return (1);
 }
 
 /**
- * _estwillputfd - writes the character c to given file descriptor.
+ * _myputfd - writes the character c to given file descriptor.
  *
  * @c: The character .
  *
@@ -56,23 +56,23 @@ static int x;
  * and errno is set appropriately.
  *
  */
-int _estwillputfd(char c, int fd)
+int _myputfd(char c, int fd)
 {
 	static int x;
-	static char buff1[ESTWILL_WRITE_BUFFER_SIZE];
+	static char buff1[MY_WRITE_BUFFER_SIZE];
 
-	if (c == ESTWILL_BUFFER_FLUSH || x >= ESTWILL_WRITE_BUFFER_SIZE)
+	if (c == MY_BUFFER_FLUSH || x >= MY_WRITE_BUFFER_SIZE)
 	{
 	write(fd, buff1, x);
 	x = 0;
 	}
-	if (c != ESTWILL_BUFFER_FLUSH)
+	if (c != MY_BUFFER_FLUSH)
 	buff1[x++] = c;
 	return (1);
 }
 
 /**
- * _estwillputsfd - Prints the input string.
+ * _myputsfd - Prints the input string.
  * @str: The string.
  *
  * @fd: The file descriptor.
@@ -80,7 +80,7 @@ int _estwillputfd(char c, int fd)
  * Return: The number of chars.
  *
  */
-int _estwillputsfd(char *str, int fd)
+int _myputsfd(char *str, int fd)
 {
 	int k = 0;
 
@@ -88,7 +88,7 @@ int _estwillputsfd(char *str, int fd)
 	return (0);
 	while (*str)
 	{
-	k += _estwillputfd(*str++, fd);
+	k += _myputfd(*str++, fd);
 	}
 	return (k);
 }

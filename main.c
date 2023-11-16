@@ -31,19 +31,19 @@ info_t info[] = {INFO_INIT};
 			exit(126);
 			if (errno == ENOENT)
 			{
-				_estwillputs(arguvec[0]);
-				_estwillputs(": 0: File cannot be opened ");
-				_estwillputs(arguvec[1]);
-				_estwillputchar('\n');
-				_estwillputchar(ESTWILL_BUFFER_FLUSH);
+				_myputs(arguvec[0]);
+				_myputs(": 0: File cannot be opened ");
+				_myputs(arguvec[1]);
+				_myputchar('\n');
+				_myputchar(MY_BUFFER_FLUSH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);
 		}
 		info->readfd = fd;
 	}
-	estwill_fill_env_list(info);
-	estwill_history_read(info);
+	my_fill_env_list(info);
+	my_history_read(info);
 	hshell(info, arguvec);
 	return (EXIT_SUCCESS);
 }
