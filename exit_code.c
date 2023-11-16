@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- *my_strncpy - Copy a string.
+ *_strncpy - Copy a string.
  *
  *@destination: The destination of the copied string.
  *
@@ -10,7 +10,7 @@
  *Return: Concatenated string.
  *
  */
-char *my_strncpy(char *destination, char *src, int t)
+char *_strncpy(char *destination, char *src, int t)
 {
 	int f, g;
 	char *s = destination;

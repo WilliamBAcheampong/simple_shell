@@ -35,23 +35,23 @@ int my_unsetenv(info_t *info, char *var)
 {
 	char *f;
 
-list_t *mynode = info->env;
+list_t *myNode = info->env;
 	size_t k = 0;
 
-	if (!mynode || !var)
+	if (!myNode || !var)
 	return (0);
 
-	while (mynode)
+	while (myNode)
 	{
-		f = my_starts_with(mynode->str, var);
+		f = my_starts_with(myNode->str, var);
 		if (f && *f == '=')
 		{
-		info->env_change = my_remove_index_node(&(info->env), k);
+		info->env_change = remove_index_node(&(info->env), k);
 		k = 0;
-		mynode = info->env;
+		myNode = info->env;
 		continue;
 		}
-		mynode = mynode->nextn;
+		myNode = myNode->nextn;
 		k++;
 	}
 	return (info->env_change);
@@ -81,7 +81,7 @@ int my_setenv(info_t *info, char *val, char *var)
 	buff = malloc(my_strlen(var) + my_strlen(val) + 2);
 	if (!buff)
 		return (1);
-	my_strcpy(buff, var);
+	_strcpy(buff, var);
 	my_strcat(buff, "=");
 	my_strcat(buff, val);
 	node = info->env;
@@ -97,7 +97,7 @@ int my_setenv(info_t *info, char *val, char *var)
 		}
 		node = node->nextn;
 	}
-	my_add_node_at_end(&(info->env), buff, 0);
+	add_end_node(&(info->env), buff, 0);
 	free(buff);
 	info->env_change = 1;
 	return (0);

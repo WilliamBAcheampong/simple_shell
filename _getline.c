@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * input_buf - buffers chain commands.
+ * input_buffer - buffers chain commands.
  *
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
@@ -12,7 +12,7 @@
  * Return: bytes read.
  *
  */
-ssize_t input_buf(info_t *info, char **buffer, size_t *len)
+ssize_t input_buffer(info_t *info, char **buffer, size_t *len)
 {
 	size_t len_p = 0;
 ssize_t y = 0;
@@ -22,11 +22,11 @@ ssize_t y = 0;
 		/*my_dfree((void **)info->cmd_buffer);*/
 		free(*buffer);
 		*buffer = NULL;
-		signal(SIGINT, my_handle_sigint);
-#if MY_GET_LINE
+		signal(SIGINT, handle_sigint);
+#if USE_GETLINE
 		y = getline(buffer, &len_p, stdin);
 #else
-		y = my_get_line(info, buffer, &len_p);
+		y = _my_getline(info, buffer, &len_p);
 #endif
 		if (y > 0)
 		{
@@ -36,8 +36,8 @@ ssize_t y = 0;
 				y--;
 		}
 		info->linecnt_flag = 1;
-		my_delete_comment(*buffer);
-		my_hist_construct_list(info, *buffer, info->history_cnt++);
+		delete_comment(*buffer);
+		historyBuild_list(info, *buffer, info->history_cnt++);
 		/* if (my_strchr(*buffer, ';')) command chain or not? */
 		{
 				*len = y;
@@ -66,7 +66,7 @@ char **buf_f = &(info->arg), *f;
 	ssize_t y = 0;
 
 	my_putchar(MY_BUFFER_FLUSH);
-	y = input_buf(info, &buf, &len);
+	y = input_buffer(info, &buf, &len);
 	if (y == -1) /* EOF */
 		return (-1);
 	if (len)
@@ -93,8 +93,8 @@ char **buf_f = &(info->arg), *f;
 		return (my_strlen(f)); /* len of current command is returned */
 	}
 
-	*buf_f = buf; /* else not a chain, pass back buffer from my_get_line() */
-	return (y); /* return len of buffer from my_get_line() */
+	*buf_f = buf; /* else not a chain, pass back buffer from _my_getline() */
+	return (y); /* return len of buffer from _my_getline() */
 }
 
 /**
@@ -122,7 +122,7 @@ ssize_t read_buf(info_t *info, size_t *b, char *buf)
 }
 
 /**
- * my_get_line - This gets the next line of input from STDIN.
+ * _my_getline - This gets the next line of input from STDIN.
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
  *
@@ -132,7 +132,7 @@ ssize_t read_buf(info_t *info, size_t *b, char *buf)
  * Return: s.
  *
  */
-int my_get_line(info_t *info, char **pointer, size_t *len)
+int _my_getline(info_t *info, char **pointer, size_t *len)
 {
 	static char buf[MY_READ_BUFFER_SIZE];
 	size_t q;
@@ -159,7 +159,7 @@ static size_t d, length;
 	if (u)
 		my_strncat(new_f, buf + d, q - d);
 	else
-		my_strncpy(new_f, buf + d, q - d + 1);
+		_strncpy(new_f, buf + d, q - d + 1);
 
 	u += q - d;
 	d = q;
@@ -170,14 +170,14 @@ static size_t d, length;
 	return (u);
 }
 /**
- * my_handle_sigint - blocks ctrl-C.
+ * handle_sigint - blocks ctrl-C.
  *
- * @sig_numb: the signal number.
+ * @signalNumber: the signal number.
  *
  * Return: void.
  *
  */
-void my_handle_sigint(__attribute__((unused))int sig_numb)
+void handle_sigint(__attribute__((unused))int signalNumber)
 {
 	_willputs("\n");
 

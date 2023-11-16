@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * my_ourhist - history list is displayed, line
+ * my_history - history list is displayed, line
  * by line, beginning with line numbers, commencing from 0.
  *
  * @info: Arguments use to maintain function prototypes
@@ -9,7 +9,7 @@
  *  Return: always 0.
  *
  */
-int my_ourhist(info_t *info)
+int my_history(info_t *info)
 {
 	list_print(info->history);
 	return (0);
@@ -37,8 +37,8 @@ char *f, y;
 		return (1);
 	y = *f;
 	*f = 0;
-	ret = my_remove_index_node(&(info->alias),
-	my_find_indexof_node(info->alias, my_node_commence(info->alias, str, -1)));
+	ret = remove_index_node(&(info->alias),
+	get_indexOf_node(info->alias, node_start(info->alias, str, -1)));
 	*f = y;
 	return (ret);
 }
@@ -63,18 +63,18 @@ char *f;
 		return (unset_alias(info, str));
 
 	unset_alias(info, str);
-	return (my_add_node_at_end(&(info->alias), str, 0) == NULL);
+	return (add_end_node(&(info->alias), str, 0) == NULL);
 }
 
 /**
- * _aliasPrint - Prints an alias of a string.
+ * print_alias - Prints an alias of a string.
  *
  * @node: alias node.
  *
  * Return: if 0, success, 1 if failure.
  *
  */
-int _aliasPrint(list_t *node)
+int print_alias(list_t *node)
 {
 	char *f = NULL, *k = NULL;
 
@@ -92,7 +92,7 @@ int _aliasPrint(list_t *node)
 }
 
 /**
- * my_ouralias - Mimics the alias builtin (man alias).
+ * _ouralias - Mimics the alias builtin (man alias).
  *
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
@@ -100,20 +100,20 @@ int _aliasPrint(list_t *node)
  *  Return: 0.
  *
  */
-int my_ouralias(info_t *info)
+int _ouralias(info_t *info)
 {
-	list_t *mynode = NULL;
+	list_t *myNode = NULL;
 
 int r = 0;
 	char *f = NULL;
 
 	if (info->argc == 1)
 	{
-		mynode = info->alias;
-		while (mynode)
+		myNode = info->alias;
+		while (myNode)
 		{
-		_aliasPrint(mynode);
-		mynode = mynode->nextn;
+		print_alias(myNode);
+		myNode = myNode->nextn;
 		}
 		return (0);
 	}
@@ -124,7 +124,7 @@ int r = 0;
 		if (f)
 		set_alias(info, info->argv[r]);
 		else
-		_aliasPrint(my_node_commence(info->alias, info->argv[r], '='));
+		print_alias(node_start(info->alias, info->argv[r], '='));
 	}
 
 	return (0);

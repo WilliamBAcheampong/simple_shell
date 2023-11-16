@@ -82,14 +82,14 @@ void my_check_chain(info_t *info, char *buff1, size_t *b, size_t f, size_t len)
 }
 
 /**
- * my_alias_change - Replaces an aliases in the tokenized string.
+ * change_alias - Replaces an aliases in the tokenized string.
 * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
  *
  * Return: 1 if replaced, 0 if not replaced.
  *
  */
-int my_alias_change(info_t *info)
+int change_alias(info_t *info)
 {
 	char *f;
 int k;
@@ -97,7 +97,7 @@ int k;
 
 	for (k = 0; k < 10; k++)
 	{
-		node = my_node_commence(info->alias, info->argv[0], '=');
+		node = node_start(info->alias, info->argv[0], '=');
 		if (!node)
 		return (0);
 
@@ -134,19 +134,19 @@ int my_var_change(info_t *info)
 		if (info->argv[e][0] != '$' || !info->argv[e][1])
 			continue;
 
-		if (!my_strcmp(info->argv[e], "$?"))
+		if (!_strcmp(info->argv[e], "$?"))
 		{
 			my_str_change(&(info->argv[e]),
 			my_strdup(my_change_num(info->status, 10, 0)));
 			continue;
 		}
-		if (!my_strcmp(info->argv[e], "$$"))
+		if (!_strcmp(info->argv[e], "$$"))
 		{
 			my_str_change(&(info->argv[e]),
 			my_strdup(my_change_num(getpid(), 10, 0)));
 			continue;
 		}
-		node = my_node_commence(info->env, &info->argv[e][1], '=');
+		node = node_start(info->env, &info->argv[e][1], '=');
 		if (node)
 		{
 			my_str_change(&(info->argv[e]),

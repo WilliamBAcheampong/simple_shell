@@ -51,7 +51,7 @@ char *my_dupli_chars(char *string_path, int stop_index, int start_index)
 }
 
 /**
- * my_get_path - Finds this cmd in the PATH string.
+ * _get_path - Finds this cmd in the PATH string.
  * @info: The info struct.
  *
  * @string_path: The PATH string.
@@ -60,7 +60,7 @@ char *my_dupli_chars(char *string_path, int stop_index, int start_index)
  * Return: full path of command if found or NULL.
  *
  */
-char *my_get_path(info_t *info, char *command, char *string_path)
+char *_get_path(info_t *info, char *command, char *string_path)
 {
 	int p = 0, cur_posi = 0;
 	char *path12;

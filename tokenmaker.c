@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * **my_strtok - Divide a string into words,
+ * **my_strtow - Divide a string into words,
  * repeated delimiters are ignored.
  * @str: the input string.
  *
@@ -11,7 +11,7 @@
  *
  */
 
-char **my_strtok(char *str, char *z)
+char **my_strtow(char *str, char *z)
 {
 	int a, m;
 int x;
@@ -56,7 +56,7 @@ int numbwords = 0;
 }
 
 /**
- * **my_strtok1 - Divide string into words.
+ * **my_strtow1 - Divide string into words.
  *
  * @str: the string inputted.
  *
@@ -65,7 +65,7 @@ int numbwords = 0;
  * or NULL on failure.
  *
  */
-char **my_strtok1(char *str, char w)
+char **my_strtow1(char *str, char w)
 {
 	int e, r, u, f, numbwords = 0;
 	char **v;

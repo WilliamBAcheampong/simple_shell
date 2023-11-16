@@ -46,7 +46,7 @@ static int x;
 }
 
 /**
- * _myputfd - writes the character c to given file descriptor.
+ * _my_putfd - writes the character c to given file descriptor.
  *
  * @c: The character .
  *
@@ -56,7 +56,7 @@ static int x;
  * and errno is set appropriately.
  *
  */
-int _myputfd(char c, int fd)
+int _my_putfd(char c, int fd)
 {
 	static int x;
 	static char buff1[MY_WRITE_BUFFER_SIZE];
@@ -72,7 +72,7 @@ int _myputfd(char c, int fd)
 }
 
 /**
- * _myputsfd - Prints the input string.
+ * _my_putsfd - Prints the input string.
  * @str: The string.
  *
  * @fd: The file descriptor.
@@ -80,7 +80,7 @@ int _myputfd(char c, int fd)
  * Return: The number of chars.
  *
  */
-int _myputsfd(char *str, int fd)
+int _my_putsfd(char *str, int fd)
 {
 	int k = 0;
 
@@ -88,7 +88,7 @@ int _myputsfd(char *str, int fd)
 	return (0);
 	while (*str)
 	{
-	k += _myputfd(*str++, fd);
+	k += _my_putfd(*str++, fd);
 	}
 	return (k);
 }

@@ -21,21 +21,21 @@ char *my_get_history_file(info_t *info)
 	if (!buff)
 		return (NULL);
 	buff[0] = 0;
-	my_strcpy(buff, dir);
+	_strcpy(buff, dir);
 	my_strcat(buff, "/");
 	my_strcat(buff, MY_HISTORY_FILE);
 	return (buff);
 }
 
 /**
- * my_hist_record - Create a new file, or append to an
+ * _history_write - Create a new file, or append to an
  * an already existing file.
  * @info: The parameter struct.
  *
  * Return: 1 on success, else -1.
  *
  */
-int my_hist_record(info_t *info)
+int _history_write(info_t *info)
 {
 	list_t *node = NULL;
 	char *nameoffile = my_get_history_file(info);
@@ -50,10 +50,10 @@ int my_hist_record(info_t *info)
 	return (-1);
 	for (node = info->history; node; node = node->nextn)
 	{
-	_myputsfd(node->str, fd);
-	_myputfd('\n', fd);
+	_my_putsfd(node->str, fd);
+	_my_putfd('\n', fd);
 	}
-	_myputfd(MY_BUFFER_FLUSH, fd);
+	_my_putfd(MY_BUFFER_FLUSH, fd);
 	close(fd);
 	return (1);
 }
@@ -97,21 +97,21 @@ int linecnt = 0;
 		if (buff[h] == '\n')
 		{
 			buff[h] = 0;
-			my_hist_construct_list(info, buff + end, linecnt++);
+			historyBuild_list(info, buff + end, linecnt++);
 			end = h + 1;
 		}
 	if (end != h)
-		my_hist_construct_list(info, buff + end, linecnt++);
+		historyBuild_list(info, buff + end, linecnt++);
 	free(buff);
 	info->history_cnt = linecnt;
 	while (info->history_cnt-- >= MY_HISTORY_MAX)
-		my_remove_index_node(&(info->history), 0);
+		remove_index_node(&(info->history), 0);
 	my_hist_reassign(info);
 	return (info->history_cnt);
 }
 
 /**
- * my_hist_construct_list - Adds entries to a history linked list.
+ * historyBuild_list - Adds entries to a history linked list.
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
  *
@@ -121,16 +121,16 @@ int linecnt = 0;
  * Return: 0.
  *
  */
-int my_hist_construct_list(info_t *info, char *buffer, int linecnt)
+int historyBuild_list(info_t *info, char *buffer, int linecnt)
 {
-	list_t *mynode = NULL;
+	list_t *myNode = NULL;
 
 	if (info->history)
-		mynode = info->history;
-	my_add_node_at_end(&mynode, buffer, linecnt);
+		myNode = info->history;
+	add_end_node(&myNode, buffer, linecnt);
 
 	if (!info->history)
-		info->history = mynode;
+		info->history = myNode;
 	return (0);
 }
 

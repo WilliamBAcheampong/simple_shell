@@ -28,7 +28,7 @@ void my_info_intialise(info_t *info, char **arguvec)
 	info->fname = arguvec[0];
 	if (info->arg)
 	{
-		info->argv = my_strtok(info->arg, " \t");
+		info->argv = my_strtow(info->arg, " \t");
 		if (!info->argv)
 		{
 			info->argv = malloc(sizeof(char *) * 2);
@@ -42,7 +42,7 @@ void my_info_intialise(info_t *info, char **arguvec)
 		;
 		info->argc = b;
 
-		my_alias_change(info);
+		change_alias(info);
 		my_var_change(info);
 	}
 }

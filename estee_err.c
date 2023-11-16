@@ -1,14 +1,14 @@
 #include "shell.h"
 
 /**
- * est_atoi - String to integer converter.
+ * e_atoi - String to integer converter.
  * @s: String that will be converted.
  *
  * Return: if no numbers in string, 0, converted number,
  * if not, -1 when error.
  *
  */
-int est_atoi(char *s)
+int e_atoi(char *s)
 {
 	unsigned long int result = 0;
 int h = 0;
@@ -31,7 +31,7 @@ int h = 0;
 }
 
 /**
- * my_errorPrint - Prints an error message
+ * error_print - Prints an error message
  *
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
@@ -42,7 +42,7 @@ int h = 0;
  * otherwise -1 on error.
  *
  */
-void my_errorPrint(info_t *info, char *errstr)
+void error_print(info_t *info, char *errstr)
 {
 	_myputs(info->fname);
 
@@ -109,15 +109,15 @@ if (input < 0)
  *
  * @numb: number.
  *
- * @valofbase:  base value.
+ * @baseValue:  base value.
  * @flags: flags of arguments.
  *
  * Return: string.
  *2
  */
-char *my_change_num(long int numb, int flags, int valofbase)
+char *my_change_num(long int numb, int flags, int baseValue)
 {
-	char signvalue = 0;
+	char signValue = 0;
 
 static char *array1;
 
@@ -127,28 +127,28 @@ static char buffer[50];
 
 unsigned long q = numb;
 
-	if (!(flags & MY_TO_UNSIGNED) && numb < 0)
+	if (!(flags & TO_UNSIGNED) && numb < 0)
 	{
 		q = -numb;
-		signvalue = '-';
+		signValue = '-';
 
 	}
-	array1 = flags & MY_TO_LOWCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	array1 = flags & TO_LOWCASE ? "0123456789abcdef" : "0123456789ABCDEF";
 	ptr = &buffer[49];
 	*ptr = '\0';
 
 	do	{
-	*--ptr = array1[q % valofbase];
-	q /= valofbase;
+	*--ptr = array1[q % baseValue];
+	q /= baseValue;
 	} while (q != 0);
 
-	if (signvalue)
-	*--ptr = signvalue;
+	if (signValue)
+	*--ptr = signValue;
 	return (ptr);
 }
 
 /**
- * my_delete_comment - function that interchange
+ * delete_comment - function that interchange
  * initial instance of '#' with '\0'.
  *
  * @buf: address of the string being modified.
@@ -156,11 +156,11 @@ unsigned long q = numb;
  * Return: Always 0.
  *
  */
-void my_delete_comment(char *buf)
+void delete_comment(char *buf)
 {
 	int a;
 
-	for (a = 0; buf[a] != '\0'; a++)
+		for (a = 0; buf[a] != '\0'; a++)
 		if (buf[a] == '#' && (!a || buf[a - 1] == ' '))
 		{
 		buf[a] = '\0';

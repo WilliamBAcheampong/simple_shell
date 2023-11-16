@@ -37,31 +37,31 @@ void my_jfree(char **ee)
  * _realloc - Reallocates block of memory.
  *
  *
- * @prvblk: Point to the previous mallocated block.
- * @unused_blk: previous block byte size.
+ * @pointer: Point to the previous mallocated block.
+ * @_oldSize: previous block byte size.
  *
- * @newblk: new block byte size.
+ * @_newSize: new block byte size.
  *
  * Return: pointer to.
  */
-void *_realloc(void *prvblk, unsigned int unused_blk, unsigned int newblk)
+void *_realloc(void *pointer, unsigned int _oldSize, unsigned int _newSize)
 {
 	char *f;
 
-	if (!prvblk)
-		return (malloc(newblk));
-	if (!newblk)
-	return (free(prvblk), NULL);
-	if (newblk == unused_blk)
-		return (prvblk);
+	if (!pointer)
+		return (malloc(_newSize));
+	if (!_newSize)
+	return (free(pointer), NULL);
+	if (_newSize == _oldSize)
+		return (pointer);
 
-	f = malloc(newblk);
+	f = malloc(_newSize);
 	if (!f)
 	return (NULL);
 
-	unused_blk = unused_blk < newblk ? unused_blk : newblk;
-	while (unused_blk--)
-		f[unused_blk] = ((char *)prvblk)[unused_blk];
-	free(prvblk);
+	_oldSize = _oldSize < _newSize ? _oldSize : _newSize;
+	while (_oldSize--)
+		f[_oldSize] = ((char *)pointer)[_oldSize];
+	free(pointer);
 	return (f);
 }

@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
- * my_nodeaddition - Adds a node to the start of a list.
- * @headnode: Address to the head node pointer.
+ * my_nodeAdd - Adds a node to the start of a list.
+ * @headNode: Address to the head node pointer.
  *
  * @str: String field of node.
  * @numb: The node index used by history.
@@ -9,33 +9,33 @@
  * Return: size of list is returned.
  *
  */
-list_t *my_nodeaddition(list_t **headnode, const char *str, int numb)
+list_t *my_nodeAdd(list_t **headNode, const char *str, int numb)
 {
-	list_t *new_headnode;
+	list_t *new_headNode;
 
-	if (!headnode)
+	if (!headNode)
 		return (NULL);
-	new_headnode = malloc(sizeof(list_t));
-	if (!new_headnode)
+	new_headNode = malloc(sizeof(list_t));
+	if (!new_headNode)
 		return (NULL);
-	my_setmemory((void *)new_headnode, 0, sizeof(list_t));
-	new_headnode->numb = numb;
+	my_setmemory((void *)new_headNode, 0, sizeof(list_t));
+	new_headNode->numb = numb;
 	if (str)
 	{
-		new_headnode->str = my_strdup(str);
-		if (!new_headnode->str)
+		new_headNode->str = my_strdup(str);
+		if (!new_headNode->str)
 		{
-		free(new_headnode);
+		free(new_headNode);
 			return (NULL);
 		}
 	}
-	new_headnode->nextn = *headnode;
-	*headnode = new_headnode;
-	return (new_headnode);
+	new_headNode->nextn = *headNode;
+	*headNode = new_headNode;
+	return (new_headNode);
 }
 
 /**
- * my_add_node_at_end - Adds a node to the end of a list.
+ * add_end_node - Adds a node to the end of a list.
  * @head_node: address to head_node pointer.
  *
  * @str: Node’s string field.
@@ -43,7 +43,7 @@ list_t *my_nodeaddition(list_t **headnode, const char *str, int numb)
  *
  * Return:  returns size of list.
  */
-list_t *my_add_node_at_end(list_t **head_node, const char *str, int numb)
+list_t *add_end_node(list_t **head_node, const char *str, int numb)
 {
 	list_t *new_node, *node;
 
@@ -100,14 +100,14 @@ size_t my_string_list_print(const list_t *n)
 }
 
 /**
- * my_remove_index_node  - Deletes node at a specified index.
+ * remove_index_node  - Deletes node at a specified index.
  * @head_node: Address of first node pointer.
  * @indnode: Indnode of node to be deleted.
  *
  * Return: 0 if it fails, 1 on success.
  *
  */
-int my_remove_index_node(list_t **head_node, unsigned int indnode)
+int remove_index_node(list_t **head_node, unsigned int indnode)
 {
 	unsigned int r = 0;
 

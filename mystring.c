@@ -21,7 +21,7 @@ int my_strlen(char *u)
 }
 
 /**
- * my_strcmp - Performs comparison of two strings.
+ * _strcmp - Performs comparison of two strings.
  * @string1: The 1st string.
  *
  * @string2: The 2nd string.
@@ -29,7 +29,7 @@ int my_strlen(char *u)
  * Return: Negative if string1 < string2, zero if string,
  *  positive if string1 > string2 is equal to string 2.
  */
-int my_strcmp(char *string2, char *string1)
+int _strcmp(char *string2, char *string1)
 {
 	while (*string1 && *string2)
 	{

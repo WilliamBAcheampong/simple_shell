@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * my_strcpy - Copies string.
+ * _strcpy - Copies string.
  *
  * @destination: The destination.
  *
@@ -10,7 +10,7 @@
  * Return: destination pointer.
  *
  */
-char *my_strcpy(char *destination, char *source)
+char *_strcpy(char *destination, char *source)
 {
 	int t = 0;
 

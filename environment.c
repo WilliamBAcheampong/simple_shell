@@ -102,7 +102,7 @@ size_t d;
 list_t *node1 = NULL;
 
 	for (d = 0; environ[d]; d++)
-	my_add_node_at_end(&node1, environ[d], 0);
+	add_end_node(&node1, environ[d], 0);
 	info->env = node1;
 	return (0);
 }

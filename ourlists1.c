@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * my_len_oflist - Find out len of linked list.
+ * len_ofList - Find out len of linked list.
  * @n: First node pointer.
  *
  * Return: list size.
  *
  */
-size_t my_len_oflist(const list_t *n)
+size_t len_ofList(const list_t *n)
 {
 	size_t g = 0;
 
@@ -21,20 +21,20 @@ size_t my_len_oflist(const list_t *n)
 
 /**
  * tostr_list - An array of strings of the list->str is returned.
- * @headnode: first node pointer.
+ * @headNode: first node pointer.
  *
  * Return: Array of strings.
  *
  */
-char **tostr_list(list_t *headnode)
+char **tostr_list(list_t *headNode)
 {
 	char *str;
-	size_t d = my_len_oflist(headnode), f;
+	size_t d = len_ofList(headNode), f;
 	char **strings;
-	list_t *node1 = headnode;
+	list_t *node1 = headNode;
 
 
-	if (!headnode || !d)
+	if (!headNode || !d)
 		return (NULL);
 	strings = malloc(sizeof(char *) * (d + 1));
 	if (!strings)
@@ -50,7 +50,7 @@ char **tostr_list(list_t *headnode)
 			return (NULL);
 		}
 
-	str = my_strcpy(str, node1->str);
+	str = _strcpy(str, node1->str);
 	strings[d] = str;
 	}
 	strings[d] = NULL;
@@ -83,7 +83,7 @@ size_t list_print(const list_t *n)
 }
 
 /**
- * my_node_commence - Returns node with
+ * node_start - Returns node with
  * prefix starting string.
  *
  * @hnode: list head pointer.
@@ -94,7 +94,7 @@ size_t list_print(const list_t *n)
  * Return: Returns null or match node
  *
  */
-list_t *my_node_commence(list_t *hnode, char *prefstr, char c)
+list_t *node_start(list_t *hnode, char *prefstr, char c)
 {
 	char *f = NULL;
 
@@ -109,23 +109,23 @@ list_t *my_node_commence(list_t *hnode, char *prefstr, char c)
 }
 
 /**
- * my_find_indexof_node - Gets the index of a node.
- * @headnode: list head pointer.
+ * get_indexOf_node - Gets the index of a node.
+ * @headNode: list head pointer.
  *
  * @my_node: node pointer.
  *
  * Return: returns index of node or return -1.
  *
  */
-ssize_t my_find_indexof_node(list_t *headnode, list_t *my_node)
+ssize_t get_indexOf_node(list_t *headNode, list_t *my_node)
 {
 	size_t q = 0;
 
-	while (headnode)
+	while (headNode)
 	{
-		if (headnode == my_node)
+		if (headNode == my_node)
 			return (q);
-		headnode = headnode->nextn;
+		headNode = headNode->nextn;
 		q++;
 	}
 	return (-1);

@@ -11,23 +11,23 @@
  */
 int my_exit(info_t *info)
 {
-	int checkingexit;
+	int checkexit;
 
 	if (info->argv[1]) /* If there is exit argument */
 	{
-		checkingexit = est_atoi(info->argv[1]);
-		if (checkingexit == -1)
+		checkexit = e_atoi(info->argv[1]);
+		if (checkexit == -1)
 		{
 			info->status = 2;
-			my_errorPrint(info, "Illegal number: ");
+			error_print(info, "Illegal number: ");
 			_myputs(info->argv[1]);
 			_myputchar('\n');
 			return (1);
 		}
-		info->errcode_numb = est_atoi(info->argv[1]);
+		info->err_number = e_atoi(info->argv[1]);
 		return (-2);
 	}
-		info->errcode_numb = -1;
+		info->err_number = -1;
 		return (-2);
 }
 
@@ -57,9 +57,9 @@ y = getcwd(buffer, 1024);
 			else
 			ret_chdir = chdir(dir);
 	}
-	else if (my_strcmp(info->argv[1], "-") == 0)
+			else if (_strcmp(info->argv[1], "-") == 0)
 	{
-		if (!_getenv(info, "OLDPWD="))
+			if (!_getenv(info, "OLDPWD="))
 		{
 			_willputs(y);
 			my_putchar('\n');
@@ -73,7 +73,7 @@ y = getcwd(buffer, 1024);
 	ret_chdir = chdir(info->argv[1]);
 	if (ret_chdir == -1)
 	{
-		my_errorPrint(info, "I cannot change directory into");
+		error_print(info, "I cannot change directory into");
 		_myputs(info->argv[1]), _myputchar('\n');
 	}
 	else
