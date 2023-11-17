@@ -3,7 +3,7 @@
 /**
  * main - Entry point of program.
  *
- * @argucount: count of argument.
+ * @ac: count of argument.
  *
  * @arguvec: vector of argument.
  *
@@ -11,7 +11,7 @@
  * Return: 0 on success, 1 when error.
  *
  */
-int main(int argucount, char **arguvec)
+int main(int ac, char **arguvec)
 {
 int fd = 2;
 info_t info[] = {INFO_INIT};
@@ -22,7 +22,7 @@ info_t info[] = {INFO_INIT};
 		: "=r" (fd)
 		: "r" (fd));
 
-	if (argucount == 2)
+	if (ac == 2)
 	{
 		fd = open(arguvec[1], O_RDONLY);
 		if (fd == -1)
@@ -44,6 +44,6 @@ info_t info[] = {INFO_INIT};
 	}
 	populate_env_list(info);
 	read_history(info);
-	hshell(info, arguvec);
+	hsh(info, arguvec);
 	return (EXIT_SUCCESS);
 }

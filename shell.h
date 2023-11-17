@@ -111,17 +111,17 @@ char *type;
 int (*funct)(info_t *);
 } builtin_table;
 
-/********* my_loop.c *****/
+/********* shellLoop.c *****/
 int look_for_builtin(info_t *);
-int hshell(info_t*, char **);
+int hsh(info_t*, char **);
 void getcmd(info_t *);
 void fork_cmd(info_t *);
 
 
 
 
-/**** my_loop_hshell.c *******/
-int my_loop_hshell(char **);
+/**** loophsh.c *******/
+int loophsh(char **);
 
 
 
@@ -239,7 +239,7 @@ int read_history(info_t *info);
 int my_hist_reassign(info_t *info);
 
 
-/********** shell_var.c ***/
+/********** ourshell_var.c ***/
 int ischain(info_t *, char *, size_t *);
 int my_var_change(info_t *);
 int change_alias(info_t *);

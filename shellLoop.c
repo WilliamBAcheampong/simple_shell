@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * hshell - Main loop of shell.
+ * hsh - Main loop of shell.
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
  * @arguvec: The argument vector from main function.
@@ -8,7 +8,7 @@
  * Return: Error code or 0 when success, 1 when error.
  *
  */
-int hshell(info_t *info, char **arguvec)
+int hsh(info_t *info, char **arguvec)
 {
 	int builtin_ret = 0;
 	ssize_t f = 0;
