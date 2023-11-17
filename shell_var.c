@@ -106,7 +106,7 @@ free(info->argv[0]);
 		if (!f)
 		return (0);
 
-f = my_strdup(f + 1);
+f = _strdup(f + 1);
 		if (!f)
 			return (0);
 		info->argv[0] = f;
@@ -137,23 +137,23 @@ int my_var_change(info_t *info)
 		if (!_strcmp(info->argv[e], "$?"))
 		{
 			my_str_change(&(info->argv[e]),
-			my_strdup(my_change_num(info->status, 10, 0)));
+			_strdup(my_change_num(info->status, 10, 0)));
 			continue;
 		}
 		if (!_strcmp(info->argv[e], "$$"))
 		{
 			my_str_change(&(info->argv[e]),
-			my_strdup(my_change_num(getpid(), 10, 0)));
+			_strdup(my_change_num(getpid(), 10, 0)));
 			continue;
 		}
 		node = node_start(info->env, &info->argv[e][1], '=');
 		if (node)
 		{
 			my_str_change(&(info->argv[e]),
-				my_strdup(my_strchr(node->str, '=') + 1));
+				_strdup(my_strchr(node->str, '=') + 1));
 			continue;
 		}
-		my_str_change(&info->argv[e], my_strdup(""));
+		my_str_change(&info->argv[e], _strdup(""));
 
 	}
 	return (0);

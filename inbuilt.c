@@ -21,7 +21,7 @@ int my_exit(info_t *info)
 			info->status = 2;
 			error_print(info, "Illegal number: ");
 			_myputs(info->argv[1]);
-			_myputchar('\n');
+			__eputchar('\n');
 			return (1);
 		}
 		info->err_number = e_atoi(info->argv[1]);
@@ -32,7 +32,7 @@ int my_exit(info_t *info)
 }
 
 /**
- * my_mcd - Process current directory or folder changer.
+ * my_cd - Process current directory or folder changer.
  *
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
@@ -40,14 +40,14 @@ int my_exit(info_t *info)
  * Return: Always returns 0.
  *
  */
-int my_mcd(info_t *info)
+int my_cd(info_t *info)
 {
 char *y, *dir, buffer[1024];
 	int ret_chdir;
 y = getcwd(buffer, 1024);
 
 	if (!y)
-	_willputs("TODO: >>getcwd emsg of the failure<<\n");
+	_puts("TODO: >>getcwd emsg of the failure<<\n");
 	if (!info->argv[1])
 	{
 		dir = _getenv(info, "HOME=");
@@ -61,11 +61,11 @@ y = getcwd(buffer, 1024);
 	{
 			if (!_getenv(info, "OLDPWD="))
 		{
-			_willputs(y);
-			my_putchar('\n');
+			_puts(y);
+			_putchar('\n');
 			return (1);
 		}
-		_willputs(_getenv(info, "OLDPWD=")), my_putchar('\n');
+		_puts(_getenv(info, "OLDPWD=")), _putchar('\n');
 		ret_chdir = /* TODO: an idea of of what this would be?? */
 			chdir((dir = _getenv(info, "OLDPWD=")) ? dir : "/");
 	}
@@ -74,12 +74,12 @@ y = getcwd(buffer, 1024);
 	if (ret_chdir == -1)
 	{
 		error_print(info, "I cannot change directory into");
-		_myputs(info->argv[1]), _myputchar('\n');
+		_myputs(info->argv[1]), __eputchar('\n');
 	}
 	else
 	{
-		my_setenv(info, "OLDPWD", _getenv(info, "PWD="));
-		my_setenv(info, "PWD", getcwd(buffer, 1024));
+		_setenv(info, "OLDPWD", _getenv(info, "PWD="));
+		_setenv(info, "PWD", getcwd(buffer, 1024));
 	}
 	return (0);
 }
@@ -98,8 +98,8 @@ int my_help(info_t *info)
 	char **my_arg_array;
 
 	my_arg_array = info->argv;
-	_willputs("Help call. The function can’t be used for now\n");
+	_puts("Help call. The function can’t be used for now\n");
 	if (0)
-	_willputs(*my_arg_array); /* temp att_unused try and error */
+	_puts(*my_arg_array); /* temp att_unused try and error */
 	return (0);
 }

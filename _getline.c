@@ -65,7 +65,7 @@ static char *buf; /* the ';' command chain buffer */
 char **buf_f = &(info->arg), *f;
 	ssize_t y = 0;
 
-	my_putchar(MY_BUFFER_FLUSH);
+	_putchar(MY_BUFFER_FLUSH);
 	y = input_buffer(info, &buf, &len);
 	if (y == -1) /* EOF */
 		return (-1);
@@ -179,9 +179,9 @@ static size_t d, length;
  */
 void handle_sigint(__attribute__((unused))int signalNumber)
 {
-	_willputs("\n");
+	_puts("\n");
 
-	_willputs("$ ");
+	_puts("$ ");
 
-	my_putchar(MY_BUFFER_FLUSH);
+	_putchar(MY_BUFFER_FLUSH);
 }

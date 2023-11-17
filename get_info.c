@@ -34,7 +34,7 @@ void my_info_intialise(info_t *info, char **arguvec)
 			info->argv = malloc(sizeof(char *) * 2);
 			if (info->argv)
 			{
-			info->argv[0] = my_strdup(info->arg);
+			info->argv[0] = _strdup(info->arg);
 			info->argv[1] = NULL;
 			}
 		}
@@ -75,6 +75,6 @@ void my_free_info(info_t *info, int all)
 		my_dfree((void **)info->cmd_buffer);
 		if (info->readfd > 2)
 		close(info->readfd);
-		my_putchar(MY_BUFFER_FLUSH);
+		_putchar(MY_BUFFER_FLUSH);
 	}
 }

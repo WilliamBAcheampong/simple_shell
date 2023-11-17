@@ -82,10 +82,10 @@ int print_alias(list_t *node)
 	{
 		f = my_strchr(node->str, '=');
 		for (k = node->str; k <= f; k++)
-		my_putchar(*k);
-		my_putchar('\'');
-		_willputs(f + 1);
-		_willputs("'\n");
+		_putchar(*k);
+		_putchar('\'');
+		_puts(f + 1);
+		_puts("'\n");
 		return (0);
 	}
 	return (1);

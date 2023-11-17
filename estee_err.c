@@ -72,17 +72,17 @@ void error_print(info_t *info, char *errstr)
 int my_print_p(int fd, int input)
 {
 	unsigned int absolute, current;
-int (*_my_putchar)(char) = my_putchar;
+int (*__putchar)(char) = _putchar;
 	int f, cnt = 0;
 
 
 	if (fd == STDERR_FILENO)
-	_my_putchar = _myputchar;
+	__putchar = __eputchar;
 
 if (input < 0)
 	{
 	absolute = -input;
-	_my_putchar('-');
+	__putchar('-');
 	cnt++;
 	}
 	else
@@ -92,12 +92,12 @@ if (input < 0)
 	{
 		if (absolute / f)
 		{
-		_my_putchar('0' + current / f);
+		__putchar('0' + current / f);
 		cnt++;
 		}
 		current %= f;
 	}
-	_my_putchar('0' + current);
+	__putchar('0' + current);
 	cnt++;
 
 	return (cnt);

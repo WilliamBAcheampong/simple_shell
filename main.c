@@ -34,16 +34,16 @@ info_t info[] = {INFO_INIT};
 				_myputs(arguvec[0]);
 				_myputs(": 0: File cannot be opened ");
 				_myputs(arguvec[1]);
-				_myputchar('\n');
-				_myputchar(MY_BUFFER_FLUSH);
+				__eputchar('\n');
+				__eputchar(MY_BUFFER_FLUSH);
 				exit(127);
 			}
 			return (EXIT_FAILURE);
 		}
 		info->readfd = fd;
 	}
-	my_fill_env_list(info);
-	my_history_read(info);
+	populate_env_list(info);
+	read_history(info);
 	hshell(info, arguvec);
 	return (EXIT_SUCCESS);
 }

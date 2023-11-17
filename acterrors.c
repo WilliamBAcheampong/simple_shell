@@ -16,13 +16,13 @@ void _myputs(char *str)
 		return;
 	while (str[o] != '\0')
 	{
-		_myputchar(str[o]);
+		__eputchar(str[o]);
 		o++;
 	}
 }
 
 /**
- * _myputchar - Character c is writtenvto stderr.
+ * __eputchar - Character c is writtenvto stderr.
  *
  * @c: The character.
  *
@@ -30,7 +30,7 @@ void _myputs(char *str)
  * if an error, -1 is returned, and errno is set appropriately.
  *
  */
-int _myputchar(char c)
+int __eputchar(char c)
 {
 	static char buf[MY_WRITE_BUFFER_SIZE];
 static int x;
@@ -46,7 +46,7 @@ static int x;
 }
 
 /**
- * _my_putfd - writes the character c to given file descriptor.
+ * _putfd - writes the character c to given file descriptor.
  *
  * @c: The character .
  *
@@ -56,7 +56,7 @@ static int x;
  * and errno is set appropriately.
  *
  */
-int _my_putfd(char c, int fd)
+int _putfd(char c, int fd)
 {
 	static int x;
 	static char buff1[MY_WRITE_BUFFER_SIZE];
@@ -72,7 +72,7 @@ int _my_putfd(char c, int fd)
 }
 
 /**
- * _my_putsfd - Prints the input string.
+ * __putsfd - Prints the input string.
  * @str: The string.
  *
  * @fd: The file descriptor.
@@ -80,7 +80,7 @@ int _my_putfd(char c, int fd)
  * Return: The number of chars.
  *
  */
-int _my_putsfd(char *str, int fd)
+int __putsfd(char *str, int fd)
 {
 	int k = 0;
 
@@ -88,7 +88,7 @@ int _my_putsfd(char *str, int fd)
 	return (0);
 	while (*str)
 	{
-	k += _my_putfd(*str++, fd);
+	k += _putfd(*str++, fd);
 	}
 	return (k);
 }

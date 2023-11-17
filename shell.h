@@ -11,10 +11,10 @@
 #include <errno.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <errno.h>
+
 
 /* 1 if using system getline() */
-#define USE_GETLINE 0u
+#define USE_GETLINE 0
 #define USE_STRTOK 0
 
 /* for cmd chaining */
@@ -111,7 +111,7 @@ char *type;
 int (*funct)(info_t *);
 } builtin_table;
 
-/********* my_loop_code.c *****/
+/********* my_loop.c *****/
 int look_for_builtin(info_t *);
 int hshell(info_t*, char **);
 void getcmd(info_t *);
@@ -125,27 +125,27 @@ int my_loop_hshell(char **);
 
 
 
-/****** acterrors_code.c **********/
-int _myputchar(char);
+/****** acterrors.c **********/
+int __eputchar(char);
 void _myputs(char *);
-int _my_putfd(char c, int fd);
-int _my_putsfd(char *str, int fd);
+int _putfd(char c, int fd);
+int __putsfd(char *str, int fd);
 
-/***** willeststring1_code.c*************/
-char *my_strdup(const char *);
+/***** my_string2.c*************/
+char *_strdup(const char *);
 char *_strcpy(char *, char *);
-int my_putchar(char);
-void _willputs(char *);
+int _putchar(char);
+void _puts(char *);
 
 
 
 
-/************** exit_code.c****/
+/************** exit.c****/
 char *my_strchr(char *, char);
 char *_strncpy(char *, char *, int);
 char *my_strncat(char *, char *, int);
 
-/********* my_string.c ***/
+/********* mystring.c ***/
 int _strcmp(char *, char *);
 char *my_starts_with(const char *, const char *);
 char *my_strcat(char *, char *);
@@ -153,24 +153,24 @@ int my_strlen(char *);
 
 
 
-/*** my_tokenmaker_code.c *********/
+/*** tokenmaker.c *********/
 char **my_strtow(char *, char *);
 char **my_strtow1(char *, char);
 
 
-/**** willest_inbuilt_code.c *****/
+/**** inbuilt.c *****/
 int my_help(info_t *);
-int my_mcd(info_t *);
+int my_cd(info_t *);
 int my_exit(info_t *);
 
-/**** est_parser_code.c *******/
+/**** _parser.c *******/
 char *my_dupli_chars(char *, int, int);
 int my_is_cmd(info_t*, char *);
 char *_get_path(info_t*, char *, char *);
 
 
 
-/***  willest_reallocation_code.c */
+/***  _reallocation.c */
 void *_realloc(void *, unsigned int, unsigned int);
 void my_jfree(char **);
 char *my_setmemory(char *, char, unsigned int);
@@ -195,13 +195,13 @@ void error_print(info_t *, char *);
 /****** my_atoi.c***/
 int wi_atoi(char *);
 int is_delimiter(char, char *);
-int my_omega(int);
-int my_interactive(info_t *);
+int _isalphabet(int);
+int interative(info_t *);
 
 
 
 
-/***** inbuiltb_code.c ************/
+/***** inbuilt2.c ************/
 int _ouralias(info_t *);
 int my_history(info_t *);
 
@@ -210,36 +210,36 @@ ssize_t my_get_input(info_t *);
 int _my_getline(info_t*, char **, size_t *);
 void handle_sigint(int);
 
-/********** _get_info.c ******/
+/********** get_info.c ******/
 void my_free_info(info_t *, int);
 void my_remove_info(info_t *);
 void my_info_intialise(info_t*, char **);
 
 
-/******** environment.c ***/
+/******** environ.c ***/
 char *_getenv(info_t *, const char *);
-int _oursetenv(info_t *);
-int _ourenv(info_t *);
-int my_fill_env_list(info_t *);
+int __mysetenv(info_t *);
+int _myenv(info_t *);
+int populate_env_list(info_t *);
 int _myunsetenv(info_t *);
 
 
 /* _getenviron.c ****/
-char **my_get_environ(info_t *);
-int my_unsetenv(info_t *, char *);
-int my_setenv(info_t *, char *, char *);
+char **get_environ(info_t *);
+int _unsetenv(info_t *, char *);
+int _setenv(info_t *, char *, char *);
 
 
 
-/*** our_history_code.c **********/
-char *my_get_history_file(info_t *info);
-int _history_write(info_t *info);
+/*** our_history.c **********/
+char *get_history_file(info_t *info);
+int _write_history(info_t *info);
 int historyBuild_list(info_t *info, char *buf, int linecnt);
-int my_history_read(info_t *info);
+int read_history(info_t *info);
 int my_hist_reassign(info_t *info);
 
 
-/********** ourshell_vars_code.c ***/
+/********** shell_var.c ***/
 int ischain(info_t *, char *, size_t *);
 int my_var_change(info_t *);
 int change_alias(info_t *);
@@ -249,12 +249,12 @@ int my_str_change(char **, char *);
 
 
 
-/* mylists_code.c */
+/* mylists.c */
 size_t my_string_list_print(const list_t *);
 list_t *add_end_node(list_t **, const char *, int);
 int remove_index_node(list_t **, unsigned int);
 void my_free_list(list_t **);
-list_t *my_nodeAddition(list_t **, const char *, int);
+list_t *my_nodeAdd(list_t **, const char *, int);
 
 
 /**** ourlists1.c ***********/

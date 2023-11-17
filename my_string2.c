@@ -26,14 +26,14 @@ char *_strcpy(char *destination, char *source)
 }
 
 /**
- * my_strdup - Duplicates a string.
+ * _strdup - Duplicates a string.
  *
  * @str: string.
  *
  * Return: Points to the duplicated string.
  *
  */
-char *my_strdup(const char *str)
+char *_strdup(const char *str)
 {
 	int len = 0;
 	char *retvalue;
@@ -51,14 +51,14 @@ char *my_strdup(const char *str)
 }
 
 /**
- * _willputs - Prints an input string.
+ * _puts - Prints an input string.
  *
  * @str: The string printed.
  *
  * Return: Nothing.
  *
  */
-void _willputs(char *str)
+void _puts(char *str)
 {
 	int u = 0;
 
@@ -66,13 +66,13 @@ void _willputs(char *str)
 	return;
 	while (str[u] != '\0')
 	{
-		my_putchar(str[u]);
+		_putchar(str[u]);
 		u++;
 	}
 }
 
 /**
- * my_putchar - Writes the character c to stdout.
+ * _putchar - Writes the character c to stdout.
  * @c: The character.
  *
  * Return: On success 1.
@@ -80,7 +80,7 @@ void _willputs(char *str)
  * On error, -1 is returned, and errno is set appropriately.
  *
  */
-int my_putchar(char c)
+int _putchar(char c)
 {
 	static char buf[MY_WRITE_BUFFER_SIZE];
 	static int e;

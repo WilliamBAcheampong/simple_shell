@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * my_get_history_file- Gets the history file.
+ * get_history_file- Gets the history file.
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
  *
@@ -10,7 +10,7 @@
  *
  */
 
-char *my_get_history_file(info_t *info)
+char *get_history_file(info_t *info)
 {
 	char *dir, *buff;
 
@@ -28,17 +28,17 @@ char *my_get_history_file(info_t *info)
 }
 
 /**
- * _history_write - Create a new file, or append to an
+ * _write_history - Create a new file, or append to an
  * an already existing file.
  * @info: The parameter struct.
  *
  * Return: 1 on success, else -1.
  *
  */
-int _history_write(info_t *info)
+int _write_history(info_t *info)
 {
 	list_t *node = NULL;
-	char *nameoffile = my_get_history_file(info);
+	char *nameoffile = get_history_file(info);
 	ssize_t fd;
 
 	if (!nameoffile)
@@ -50,30 +50,30 @@ int _history_write(info_t *info)
 	return (-1);
 	for (node = info->history; node; node = node->nextn)
 	{
-	_my_putsfd(node->str, fd);
-	_my_putfd('\n', fd);
+	__putsfd(node->str, fd);
+	_putfd('\n', fd);
 	}
-	_my_putfd(MY_BUFFER_FLUSH, fd);
+	_putfd(MY_BUFFER_FLUSH, fd);
 	close(fd);
 	return (1);
 }
 
 /**
- * my_history_read - Reads history from a file.
+ * read_history - Reads history from a file.
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
  *
  * Return: history_cnt on success, 0 is returned if not successful.
  *
  */
-int my_history_read(info_t *info)
+int read_history(info_t *info)
 {
 	ssize_t fd, lenofrd, sizeofg = 0;
 	struct stat st;
 	int h;
 int end = 0;
 int linecnt = 0;
-	char *buff = NULL, *nameoffile = my_get_history_file(info);
+	char *buff = NULL, *nameoffile = get_history_file(info);
 
 	if (!nameoffile)
 		return (0);
@@ -118,7 +118,7 @@ int linecnt = 0;
  * @buffer: buffer.
  * @linecnt: The history linecnt, history_cnt.
  *
- * Return: 0.
+ * Return:
  *
  */
 int historyBuild_list(info_t *info, char *buffer, int linecnt)

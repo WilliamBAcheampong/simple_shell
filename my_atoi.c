@@ -1,17 +1,17 @@
 #include "shell.h"
 
 /**
- * my_interactive - True is returned if shell is in
- * my_interactive mode.
+ * interative - True is returned if shell is in
+ * interative mode.
  *
  * @info: address of struct.
  *
- * Return: if my_interactive mode, 1 is returned
+ * Return: if interative mode, 1 is returned
  * if not, 0 is returned
  *
  *
  */
-int my_interactive(info_t *info)
+int interative(info_t *info)
 {
 return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
@@ -34,13 +34,13 @@ int is_delimiter(char c, char *delimi)
 }
 
 /**
- * my_isalphabet - Alphabetic character checker.
+ * _isalphabet - Alphabetic character checker.
  * @c: Input character.
  *
  * Return: if c is alphabetic 1 is, 0 if c is not.
  *
  */
-int my_isalphabet(int c)
+int _isalphabet(int c)
 {
 if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 	return (1);

@@ -16,9 +16,9 @@ int hshell(info_t *info, char **arguvec)
 	while (f != -1 && builtin_ret != -2)
 	{
 		my_remove_info(info);
-		if (my_interactive(info))
-		_willputs("$ ");
-		_myputchar(MY_BUFFER_FLUSH);
+		if (interative(info))
+		_puts("$ ");
+		__eputchar(MY_BUFFER_FLUSH);
 		f = my_get_input(info);
 		if (f != -1)
 		{
@@ -27,13 +27,13 @@ int hshell(info_t *info, char **arguvec)
 		if (builtin_ret == -1)
 			getcmd(info);
 		}
-		else if (my_interactive(info))
-		my_putchar('\n');
+		else if (interative(info))
+		_putchar('\n');
 		my_free_info(info, 0);
 	}
-	_history_write(info);
+	_write_history(info);
 	my_free_info(info, 1);
-	if (!my_interactive(info) && info->status)
+	if (!interative(info) && info->status)
 		exit(info->status);
 	if (builtin_ret == -2)
 	{
@@ -61,12 +61,12 @@ int look_for_builtin(info_t *info)
 	int e, built_in_ret = -1;
 	builtin_table builtintable[] = {
 	{"exit", my_exit},
-	{"env", _ourenv},
+	{"env", _myenv},
 	{"help", my_help},
 	{"history", my_history},
-	{"setenv", _oursetenv},
+	{"setenv", __mysetenv},
 	{"unsetenv", _myunsetenv},
-	{"cd", my_mcd},
+	{"cd", my_cd},
 	{"alias", _ouralias},
 	{NULL, NULL}
 	};
@@ -113,7 +113,7 @@ void getcmd(info_t *info)
 	}
 	else
 	{
-		if ((my_interactive(info) || _getenv(info, "PATH=")
+		if ((interative(info) || _getenv(info, "PATH=")
 			|| info->argv[0][0] == '/') && my_is_cmd(info, info->argv[0]))
 			fork_cmd(info);
 		else if (*(info->arg) != '\n')
@@ -145,7 +145,7 @@ void fork_cmd(info_t *info)
 	}
 	if (child_pid1 == 0)
 	{
-		if (execve(info->path, info->argv, my_get_environ(info)) == -1)
+		if (execve(info->path, info->argv, get_environ(info)) == -1)
 		{
 			my_free_info(info, 1);
 			if (errno == EACCES)

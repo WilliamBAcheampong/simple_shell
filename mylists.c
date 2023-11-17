@@ -22,7 +22,7 @@ list_t *my_nodeAdd(list_t **headNode, const char *str, int numb)
 	new_headNode->numb = numb;
 	if (str)
 	{
-		new_headNode->str = my_strdup(str);
+		new_headNode->str = _strdup(str);
 		if (!new_headNode->str)
 		{
 		free(new_headNode);
@@ -58,7 +58,7 @@ list_t *add_end_node(list_t **head_node, const char *str, int numb)
 	new_node->numb = numb;
 	if (str)
 	{
-		new_node->str = my_strdup(str);
+		new_node->str = _strdup(str);
 		if (!new_node->str)
 		{
 			free(new_node);
@@ -91,8 +91,8 @@ size_t my_string_list_print(const list_t *n)
 
 	while (n)
 	{
-		_willputs(n->str ? n->str : " (nill) ");
-		_willputs("\n");
+		_puts(n->str ? n->str : " (nill) ");
+		_puts("\n");
 		n = n->nextn;
 		v++;
 	}

@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * my_get_environ - Returns the copy of the string array
+ * get_environ - Returns the copy of the string array
  * of our environ.
  *
  * @info: Arguments use to maintain function prototypes
@@ -10,7 +10,7 @@
  * Return: Always returns 0.
  *
  */
-char **my_get_environ(info_t *info)
+char **get_environ(info_t *info)
 {
 	if (!info->environ || info->env_change)
 	{
@@ -22,7 +22,7 @@ char **my_get_environ(info_t *info)
 }
 
 /**
- * my_unsetenv - Remove environment variable.
+ * _unsetenv - Remove environment variable.
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
  *
@@ -31,7 +31,7 @@ char **my_get_environ(info_t *info)
  * @var: The string env var property.
  *
  */
-int my_unsetenv(info_t *info, char *var)
+int _unsetenv(info_t *info, char *var)
 {
 	char *f;
 
@@ -58,7 +58,7 @@ list_t *myNode = info->env;
 }
 
 /**
- * my_setenv - Sets a new environment variable,
+ * _setenv - Sets a new environment variable,
  * or modify an existing one.
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
@@ -69,7 +69,7 @@ list_t *myNode = info->env;
  *  Return:  0.
  *
  */
-int my_setenv(info_t *info, char *val, char *var)
+int _setenv(info_t *info, char *val, char *var)
 {
 	char *f;
 	char *buff = NULL;
