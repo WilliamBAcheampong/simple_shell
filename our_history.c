@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * get_history_file- Gets the history file.
+ * get_history_file - Gets the history file.
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
  *
@@ -115,19 +115,19 @@ int linecnt = 0;
  * @info: Arguments use to maintain function prototypes
  * that are constant are in this structure.
  *
- * @buffer: buffer.
+ * @buf: buffer.
  * @linecnt: The history linecnt, history_cnt.
  *
- * Return:
+ * Return: Always return 0
  *
  */
-int historyBuild_list(info_t *info, char *buffer, int linecnt)
+int historyBuild_list(info_t *info, char *buf, int linecnt)
 {
 	list_t *myNode = NULL;
 
 	if (info->history)
 		myNode = info->history;
-	add_end_node(&myNode, buffer, linecnt);
+	add_end_node(&myNode, buf, linecnt);
 
 	if (!info->history)
 		info->history = myNode;
